@@ -38,7 +38,7 @@
             <div class="text-center pt-8">
                 <a 
                     href="{{ route('category.show') }}" 
-                    class="inline-block px-10 py-4 rounded-full bg-hoyos-red hover:bg-hoyos-redHover text-white text-xs font-black uppercase tracking-widest transition-all shadow-crimson-glow hover:shadow-[0_0_30px_rgba(255,0,46,0.8)]"
+                    class="inline-block px-10 py-4 rounded-full bg-hoyos-red hover:bg-hoyos-redHover text-white text-xs font-semibold uppercase tracking-[0.04em] transition-all shadow-crimson-glow hover:shadow-[0_0_30px_rgba(255,0,46,0.8)]"
                 >
                     Explore The Drops
                 </a>

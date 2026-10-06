@@ -58,7 +58,17 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class)
+            ->orderByRaw("CASE 
+                WHEN LOWER(variant_size) = 'xs' THEN 1
+                WHEN LOWER(variant_size) = 's' THEN 2
+                WHEN LOWER(variant_size) = 'm' THEN 3
+                WHEN LOWER(variant_size) = 'l' THEN 4
+                WHEN LOWER(variant_size) = 'xl' THEN 5
+                WHEN LOWER(variant_size) = 'xxl' THEN 6
+                WHEN LOWER(variant_size) = 'one size' THEN 7
+                ELSE 99
+            END ASC");
     }
 
     public function payment()

@@ -94,15 +94,17 @@
                     </div>
 
                     @if($product->primaryImage && $product->primaryImage->credit)
+                        @php
+                            $hasValidSourceUrl = $product->primaryImage->source_url && filter_var($product->primaryImage->source_url, FILTER_VALIDATE_URL) && \Illuminate\Support\Str::startsWith($product->primaryImage->source_url, ['http://', 'https://']);
+                            $isDemoOnly = trim($product->primaryImage->credit) === 'Original brand photo (demo use only)';
+                        @endphp
                         <div class="flex items-center justify-between px-1 text-[11px] text-hoyos-dim font-mono">
                             <span>Credit: <strong class="text-hoyos-muted">{{ $product->primaryImage->credit }}</strong></span>
-                            @if($product->primaryImage->source_url)
+                            @if(!$isDemoOnly && $hasValidSourceUrl)
                                 <a href="{{ $product->primaryImage->source_url }}" target="_blank" rel="noopener noreferrer" class="text-hoyos-red hover:underline inline-flex items-center gap-1 font-bold">
                                     <span>Source</span>
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                                 </a>
-                            @else
-                                <span class="text-hoyos-dim">Brand Archive</span>
                             @endif
                         </div>
                     @endif
@@ -152,13 +154,13 @@
                         <span class="text-xs font-mono text-hoyos-muted">Selected: <strong class="text-white" x-text="selectedSize"></strong></span>
                     </div>
 
-                    <div class="grid grid-cols-4 gap-3">
-                        @foreach($product->variants as $variant)
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+                        @foreach($product->variants->sortBy(fn($v) => \App\Models\ProductVariant::sizeOrderIndex($v->size)) as $variant)
                             <button 
                                 type="button"
                                 @click="selectedVariantId = {{ $variant->id }}; selectedSize = '{{ $variant->size }}'"
                                 :class="selectedVariantId === {{ $variant->id }} ? 'bg-hoyos-red text-white border-hoyos-red shadow-crimson-subtle' : 'bg-hoyos-card border-hoyos-border text-hoyos-muted hover:text-white hover:border-hoyos-borderBright'"
-                                class="py-3 px-4 rounded-xl border text-sm font-semibold uppercase tracking-[0.04em] transition-all flex flex-col items-center justify-center gap-1"
+                                class="py-3 px-2 rounded-xl border text-sm font-semibold uppercase tracking-[0.04em] transition-all flex flex-col items-center justify-center gap-1"
                             >
                                 <span>{{ $variant->size }}</span>
                                 <span class="text-[9px] opacity-70 font-normal">

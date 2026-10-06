@@ -76,6 +76,10 @@
 
                                 <!-- Source / Credit -->
                                 <td class="py-4 px-6 align-middle">
+                                    @php
+                                        $hasValidSourceUrl = $img->source_url && filter_var($img->source_url, FILTER_VALIDATE_URL) && \Illuminate\Support\Str::startsWith($img->source_url, ['http://', 'https://']);
+                                        $isDemoOnly = trim($img->credit) === 'Original brand photo (demo use only)';
+                                    @endphp
                                     <div class="space-y-1 text-xs">
                                         <div class="flex items-center gap-2">
                                             <svg class="w-4 h-4 text-hoyos-red flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +88,7 @@
                                             </svg>
                                             <span class="text-white font-medium">{{ $img->credit ?: 'Original brand photo (demo use only)' }}</span>
                                         </div>
-                                        @if($img->source_url)
+                                        @if(!$isDemoOnly && $hasValidSourceUrl)
                                             <a 
                                                 href="{{ $img->source_url }}" 
                                                 target="_blank" 

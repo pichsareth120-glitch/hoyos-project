@@ -290,9 +290,9 @@
 
                     <!-- Item Thumbnails List -->
                     <div class="space-y-4 max-h-72 overflow-y-auto pr-1">
-                        @foreach($cart->items as $cartItem)
+                        @foreach($cart->items->sortBy(fn($i) => \App\Models\ProductVariant::sizeOrderIndex($i->variant?->size)) as $cartItem)
                             @php
-                                $img = $cartItem->variant->product->primaryImage ? asset($cartItem->variant->product->primaryImage->image_path) : asset('images/hoyos/0ffd9c02726576625184fe52b38ace6d.jpg');
+                                $img = $cartItem->variant->product->primaryImage ? asset($cartItem->variant->product->primaryImage->image_path) : asset('images/hoyos/placeholder-item.png');
                             @endphp
                             <div class="flex items-center gap-3">
                                 <img src="{{ $img }}" alt="{{ $cartItem->variant->product->name }}" class="w-12 h-14 object-cover rounded-lg bg-black border border-hoyos-border">

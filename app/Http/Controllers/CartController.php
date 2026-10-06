@@ -18,24 +18,7 @@ class CartController extends Controller
         if ($request->wantsJson()) {
             return response()->json([
                 'success' => true,
-                'cart' => [
-                    'items' => $cart->items->map(function ($item) {
-                        return [
-                            'id' => $item->id,
-                            'name' => $item->variant->product->name,
-                            'size' => $item->variant->size,
-                            'price' => (float) $item->variant->effective_price,
-                            'quantity' => $item->quantity,
-                            'subtotal' => (float) $item->subtotal,
-                            'image' => $item->variant->product->primaryImage ? asset($item->variant->product->primaryImage->image_path) : null,
-                            'stock' => $item->variant->stock_quantity,
-                        ];
-                    }),
-                    'subtotal' => $cart->subtotal,
-                    'total_quantity' => $cart->total_quantity,
-                    'item_count' => $cart->total_quantity,
-                    'formatted_subtotal' => '$' . number_format($cart->subtotal, 2),
-                ],
+                'cart' => $this->formatCartResponse($cart),
             ]);
         }
 
@@ -57,24 +40,7 @@ class CartController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Item added to bag',
-                'cart' => [
-                    'items' => $cart->items->map(function ($item) {
-                        return [
-                            'id' => $item->id,
-                            'name' => $item->variant->product->name,
-                            'size' => $item->variant->size,
-                            'price' => (float) $item->variant->effective_price,
-                            'quantity' => $item->quantity,
-                            'subtotal' => (float) $item->subtotal,
-                            'image' => $item->variant->product->primaryImage ? asset($item->variant->product->primaryImage->image_path) : null,
-                            'stock' => $item->variant->stock_quantity,
-                        ];
-                    }),
-                    'subtotal' => $cart->subtotal,
-                    'total_quantity' => $cart->total_quantity,
-                    'item_count' => $cart->total_quantity,
-                    'formatted_subtotal' => '$' . number_format($cart->subtotal, 2),
-                ],
+                'cart' => $this->formatCartResponse($cart),
             ]);
         }
 
@@ -93,24 +59,7 @@ class CartController extends Controller
         if ($request->wantsJson()) {
             return response()->json([
                 'success' => true,
-                'cart' => [
-                    'items' => $cart->items->map(function ($item) {
-                        return [
-                            'id' => $item->id,
-                            'name' => $item->variant->product->name,
-                            'size' => $item->variant->size,
-                            'price' => (float) $item->variant->effective_price,
-                            'quantity' => $item->quantity,
-                            'subtotal' => (float) $item->subtotal,
-                            'image' => $item->variant->product->primaryImage ? asset($item->variant->product->primaryImage->image_path) : null,
-                            'stock' => $item->variant->stock_quantity,
-                        ];
-                    }),
-                    'subtotal' => $cart->subtotal,
-                    'total_quantity' => $cart->total_quantity,
-                    'item_count' => $cart->total_quantity,
-                    'formatted_subtotal' => '$' . number_format($cart->subtotal, 2),
-                ],
+                'cart' => $this->formatCartResponse($cart),
             ]);
         }
 
@@ -125,27 +74,39 @@ class CartController extends Controller
         if ($request->wantsJson()) {
             return response()->json([
                 'success' => true,
-                'cart' => [
-                    'items' => $cart->items->map(function ($item) {
-                        return [
-                            'id' => $item->id,
-                            'name' => $item->variant->product->name,
-                            'size' => $item->variant->size,
-                            'price' => (float) $item->variant->effective_price,
-                            'quantity' => $item->quantity,
-                            'subtotal' => (float) $item->subtotal,
-                            'image' => $item->variant->product->primaryImage ? asset($item->variant->product->primaryImage->image_path) : null,
-                            'stock' => $item->variant->stock_quantity,
-                        ];
-                    }),
-                    'subtotal' => $cart->subtotal,
-                    'total_quantity' => $cart->total_quantity,
-                    'item_count' => $cart->total_quantity,
-                    'formatted_subtotal' => '$' . number_format($cart->subtotal, 2),
-                ],
+                'cart' => $this->formatCartResponse($cart),
             ]);
         }
 
         return back();
+    }
+
+    protected function formatCartResponse($cart): array
+    {
+        $sortedItems = $cart->items->sortBy(function ($item) {
+            return [
+                $item->variant?->product?->name ?? '',
+                \App\Models\ProductVariant::sizeOrderIndex($item->variant?->size),
+            ];
+        })->values();
+
+        return [
+            'items' => $sortedItems->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'name' => $item->variant->product->name,
+                    'size' => $item->variant->size,
+                    'price' => (float) $item->variant->effective_price,
+                    'quantity' => $item->quantity,
+                    'subtotal' => (float) $item->subtotal,
+                    'image' => $item->variant->product->primaryImage ? asset($item->variant->product->primaryImage->image_path) : null,
+                    'stock' => $item->variant->stock_quantity,
+                ];
+            }),
+            'subtotal' => $cart->subtotal,
+            'total_quantity' => $cart->total_quantity,
+            'item_count' => $cart->total_quantity,
+            'formatted_subtotal' => '$' . number_format($cart->subtotal, 2),
+        ];
     }
 }

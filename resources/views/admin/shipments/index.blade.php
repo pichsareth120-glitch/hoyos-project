@@ -110,7 +110,7 @@
                                     Package Items
                                 </span>
                                 <div class="space-y-2 max-h-40 overflow-y-auto pr-1">
-                                    @foreach($order->items as $item)
+                                    @foreach($order->items->sortBy(fn($i) => \App\Models\ProductVariant::sizeOrderIndex($i->variant_size ?? $i->size)) as $item)
                                         <div class="flex items-center gap-2.5 text-xs bg-hoyos-card p-2 rounded-lg border border-hoyos-border/50">
                                             <span class="w-5 h-5 rounded bg-hoyos-surface text-white text-[10px] font-mono font-bold flex items-center justify-center shrink-0">
                                                 {{ $item->quantity }}x

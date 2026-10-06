@@ -105,12 +105,12 @@
                 <span>Select Size:</span>
                 <button @click="sizeSelectorOpen = false" class="text-hoyos-dim hover:text-white">✕</button>
             </div>
-            <div class="grid grid-cols-4 gap-1">
-                @foreach($product->variants as $variant)
+            <div class="flex flex-wrap gap-1">
+                @foreach($product->variants->sortBy(fn($v) => \App\Models\ProductVariant::sizeOrderIndex($v->size)) as $variant)
                     <button 
                         @click="addVariant({{ $variant->id }})"
                         :disabled="adding || {{ $variant->stock_quantity <= 0 ? 'true' : 'false' }}"
-                        class="py-1 px-1.5 rounded bg-hoyos-surface border border-hoyos-border hover:border-hoyos-red hover:bg-hoyos-darkred/60 text-white text-[11px] font-bold uppercase transition-all {{ $variant->stock_quantity <= 0 ? 'opacity-30 cursor-not-allowed line-through' : '' }}"
+                        class="flex-1 min-w-[32px] py-1 px-1.5 rounded bg-hoyos-surface border border-hoyos-border hover:border-hoyos-red hover:bg-hoyos-darkred/60 text-white text-[11px] font-semibold uppercase tracking-[0.04em] transition-all {{ $variant->stock_quantity <= 0 ? 'opacity-30 cursor-not-allowed line-through' : '' }}"
                     >
                         {{ $variant->size }}
                     </button>

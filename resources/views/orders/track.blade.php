@@ -259,7 +259,7 @@
                     Package Contents ({{ $order->items->sum('quantity') }} items)
                 </h4>
                 <div class="space-y-3 max-h-48 overflow-y-auto pr-1">
-                    @foreach($order->items as $item)
+                    @foreach($order->items->sortBy(fn($i) => \App\Models\ProductVariant::sizeOrderIndex($i->variant_size ?? $i->size)) as $item)
                         <div class="flex items-center gap-3 text-xs">
                             <span class="w-6 h-6 rounded bg-hoyos-card border border-hoyos-border flex items-center justify-center font-mono font-bold text-white text-[10px] shrink-0">
                                 {{ $item->quantity }}x

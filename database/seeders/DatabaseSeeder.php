@@ -110,9 +110,9 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => true,
                 'is_new_arrival' => true,
                 'images' => [
-                    'images/hoyos/0ffd9c02726576625184fe52b38ace6d.jpg',
-                    'images/hoyos/00c121ca-c1e9-42f9-9878-1da1da7479be.jpg',
-                    'images/hoyos/0ec14292a8b5d48849c443b44af822e3.jpg',
+                    'storage/products/y2k/neon-spray-moto-denim-set/neon-spray-moto-denim-set-front.webp',
+                    'storage/products/y2k/neon-spray-moto-denim-set/neon-spray-moto-denim-set-detail.webp',
+                    'storage/products/y2k/neon-spray-moto-denim-set/neon-spray-moto-denim-set-full.webp',
                 ],
             ],
             [
@@ -129,9 +129,9 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => true,
                 'is_new_arrival' => false,
                 'images' => [
-                    'images/hoyos/43087ed8c434aaf444e0cf52ffb1cd37.jpg',
-                    'images/hoyos/2390a44c-3c17-4f6a-b58d-b5998d068d90.jpg',
-                    'images/hoyos/288ccba8-3823-47b8-a022-c565567e13ac.jpg',
+                    'storage/products/goth/midnight-matrix-silhouette/midnight-matrix-silhouette-front.webp',
+                    'storage/products/goth/midnight-matrix-silhouette/midnight-matrix-silhouette-detail.webp',
+                    'storage/products/goth/midnight-matrix-silhouette/midnight-matrix-silhouette-full.webp',
                 ],
             ],
             [
@@ -148,7 +148,9 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => true,
                 'is_new_arrival' => true,
                 'images' => [
-                    'images/hoyos/c8a37971f646492708b357ec53f37852.jpg',
+                    'storage/products/goth/stone-guardian-armor-set/stone-guardian-armor-set-front.webp',
+                    'storage/products/goth/stone-guardian-armor-set/stone-guardian-armor-set-detail.webp',
+                    'storage/products/goth/stone-guardian-armor-set/stone-guardian-armor-set-full.webp',
                 ],
             ],
             [
@@ -165,7 +167,9 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => true,
                 'is_new_arrival' => false,
                 'images' => [
-                    'images/hoyos/8b5c7d3760e5bd5f5af54796f9b43910.jpg',
+                    'storage/products/streetwear/boxy-cyber-jersey-tee/boxy-cyber-jersey-tee-front.webp',
+                    'storage/products/streetwear/boxy-cyber-jersey-tee/boxy-cyber-jersey-tee-detail.webp',
+                    'storage/products/streetwear/boxy-cyber-jersey-tee/boxy-cyber-jersey-tee-full.webp',
                 ],
             ],
             [
@@ -182,7 +186,9 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => false,
                 'is_new_arrival' => true,
                 'images' => [
-                    'images/hoyos/7806e27f-fa34-4adb-a18b-2421fd9946c8.jpg',
+                    'storage/products/y2k/camo-tactical-cargo-set/camo-tactical-cargo-set-front.webp',
+                    'storage/products/y2k/camo-tactical-cargo-set/camo-tactical-cargo-set-detail.webp',
+                    'storage/products/y2k/camo-tactical-cargo-set/camo-tactical-cargo-set-full.webp',
                 ],
             ],
             [
@@ -199,7 +205,9 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => false,
                 'is_new_arrival' => false,
                 'images' => [
-                    'images/hoyos/8bacce7f6092b33dda4b6709eaf88db3.jpg',
+                    'storage/products/streetwear/dirty-acid-wash-denim-set/dirty-acid-wash-denim-set-front.webp',
+                    'storage/products/streetwear/dirty-acid-wash-denim-set/dirty-acid-wash-denim-set-detail.webp',
+                    'storage/products/streetwear/dirty-acid-wash-denim-set/dirty-acid-wash-denim-set-full.webp',
                 ],
             ],
             [
@@ -215,7 +223,7 @@ class DatabaseSeeder extends Seeder
                 'review_count' => 8,
                 'is_featured' => true,
                 'is_new_arrival' => true,
-                'sizes' => ['M', 'L', 'XL', 'XXL'],
+                'sizes' => ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
                 'images' => [
                     'images/hoyos/placeholder-item.png',
                 ],
@@ -233,7 +241,7 @@ class DatabaseSeeder extends Seeder
                 'review_count' => 15,
                 'is_featured' => true,
                 'is_new_arrival' => true,
-                'sizes' => ['M', 'L', 'XL', 'XXL'],
+                'sizes' => ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
                 'images' => [
                     'images/hoyos/placeholder-item.png',
                 ],
@@ -260,7 +268,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($productsData as $data) {
             $images = $data['images'];
-            $sizes = $data['sizes'] ?? ['M', 'L', 'XL', 'XXL'];
+            $sizes = $data['sizes'] ?? ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
             unset($data['images'], $data['sizes']);
 
             $product = Product::updateOrCreate(['slug' => $data['slug']], $data);
@@ -280,9 +288,9 @@ class DatabaseSeeder extends Seeder
                 );
             }
 
-            // Create Images
+            // Create Images with seeded credits directly into database
             foreach ($images as $index => $path) {
-                ProductImage::firstOrCreate(
+                ProductImage::updateOrCreate(
                     [
                         'product_id' => $product->id,
                         'image_path' => $path,
@@ -290,6 +298,8 @@ class DatabaseSeeder extends Seeder
                     [
                         'is_primary' => $index === 0,
                         'display_order' => $index,
+                        'credit' => 'Original brand photo (demo use only)',
+                        'source_url' => null,
                     ]
                 );
             }

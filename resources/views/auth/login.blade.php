@@ -122,7 +122,7 @@
                 <!-- Cosmic nebula background -->
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-hoyos-darkred/60 via-hoyos-bg to-black opacity-90"></div>
                 <img 
-                    src="{{ asset('images/hoyos/a9621747-d641-4a2f-8180-6c5743bfe268 1.png') }}" 
+                    src="{{ asset('images/hoyos/hoyoslogo.png') }}" 
                     alt="HOYOS Chrome Insignia" 
                     class="relative z-10 w-full max-w-md object-contain drop-shadow-[0_0_25px_rgba(255,0,46,0.6)]"
                 />

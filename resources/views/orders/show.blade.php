@@ -111,7 +111,7 @@
                     </h3>
 
                     <div class="divide-y divide-hoyos-border/50">
-                        @foreach($order->items as $item)
+                        @foreach($order->items->sortBy(fn($i) => \App\Models\ProductVariant::sizeOrderIndex($i->variant_size ?? $i->size)) as $item)
                             <div class="py-4 first:pt-0 last:pb-0 flex items-center gap-4">
                                 <div class="w-16 h-20 rounded-xl bg-hoyos-card border border-hoyos-border overflow-hidden shrink-0">
                                     <img 

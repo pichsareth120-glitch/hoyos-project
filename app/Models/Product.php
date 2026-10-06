@@ -46,7 +46,17 @@ class Product extends Model
 
     public function variants()
     {
-        return $this->hasMany(ProductVariant::class);
+        return $this->hasMany(ProductVariant::class)
+            ->orderByRaw("CASE 
+                WHEN LOWER(size) = 'xs' THEN 1
+                WHEN LOWER(size) = 's' THEN 2
+                WHEN LOWER(size) = 'm' THEN 3
+                WHEN LOWER(size) = 'l' THEN 4
+                WHEN LOWER(size) = 'xl' THEN 5
+                WHEN LOWER(size) = 'xxl' THEN 6
+                WHEN LOWER(size) = 'one size' THEN 7
+                ELSE 99
+            END ASC");
     }
 
     public function images()

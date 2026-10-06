@@ -67,7 +67,7 @@
 
                         <!-- Items Snapshot -->
                         <div class="py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            @foreach($order->items as $item)
+                            @foreach($order->items->sortBy(fn($i) => \App\Models\ProductVariant::sizeOrderIndex($i->variant_size ?? $i->size)) as $item)
                                 <div class="flex items-center gap-3 bg-hoyos-card/50 p-2.5 rounded-xl border border-hoyos-border/40">
                                     <div class="w-12 h-14 rounded-lg bg-hoyos-card overflow-hidden shrink-0 border border-hoyos-border">
                                         <img 
