@@ -60,6 +60,14 @@ async function run() {
     await page.screenshot({ path: path.join(OUT_DIR, 'screenshot_home_mobile.png') });
     console.log('Saved screenshot_home_mobile.png');
 
+    // Category mobile (390px)
+    console.log('Navigating to http://127.0.0.1:8000/category (Mobile 390px)...');
+    await page.goto('http://127.0.0.1:8000/category', { waitUntil: 'networkidle0', timeout: 30000 });
+    await page.evaluate(() => window.scrollBy(0, 220));
+    await new Promise(r => setTimeout(r, 600));
+    await page.screenshot({ path: path.join(OUT_DIR, 'screenshot_category_mobile.png') });
+    console.log('Saved screenshot_category_mobile.png');
+
     // Product mobile
     console.log('Navigating to http://127.0.0.1:8000/product/boxy-cyber-jersey-tee (Mobile 390px)...');
     await page.goto('http://127.0.0.1:8000/product/boxy-cyber-jersey-tee', { waitUntil: 'networkidle0', timeout: 30000 });
