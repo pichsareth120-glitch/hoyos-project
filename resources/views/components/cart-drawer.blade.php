@@ -81,7 +81,7 @@
                         <div class="flex-1 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-start justify-between gap-2">
-                                    <h3 class="text-sm font-semibold text-white line-clamp-1" x-text="item.name"></h3>
+                                    <h3 class="text-sm font-semibold text-white line-clamp-2 leading-snug" x-text="item.name"></h3>
                                     <button 
                                         @click="removeItem(item.id)" 
                                         class="text-hoyos-dim hover:text-hoyos-red transition-colors text-xs"
