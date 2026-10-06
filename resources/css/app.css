@@ -92,3 +92,24 @@
     background: linear-gradient(90deg, rgba(255,0,46,0) 0%, rgba(255,0,46,0.9) 50%, rgba(255,0,46,0) 100%);
     box-shadow: 0 0 16px #FF002E;
 }
+
+/* Browser autofill dark overrides so autofilled fields remain dark */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #14060a inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+    border-color: rgba(255, 0, 46, 0.25) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus {
+    box-shadow: 0 0 0 1000px #14060a inset !important;
+    -moz-text-fill-color: #ffffff !important;
+    filter: none;
+}
+

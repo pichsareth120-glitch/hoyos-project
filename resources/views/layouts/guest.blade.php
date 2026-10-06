@@ -20,9 +20,11 @@
     <!-- Top mini header for quick back navigation -->
     <div class="px-6 py-4 flex items-center justify-between border-b border-hoyos-border/50">
         <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-            <span class="font-display text-2xl tracking-widest text-white uppercase italic group-hover:drop-shadow-[0_0_12px_rgba(255,0,46,0.8)] transition-all">
-                HOY<span class="text-hoyos-red">O</span>S
-            </span>
+            <img 
+                src="{{ asset('images/hoyos/hoyos-wordmark.svg') }}" 
+                alt="HOYOS" 
+                class="w-[120px] h-auto object-contain drop-shadow-[0_0_12px_rgba(255,0,46,0.6)] group-hover:brightness-110 transition-all"
+            />
         </a>
         <a href="{{ route('home') }}" class="text-xs font-semibold text-hoyos-muted hover:text-white transition-colors flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
