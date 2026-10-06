@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-heading: 'Anton', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+@layer base {
+    body {
+        font-family: var(--font-sans);
+        @apply bg-hoyos-bg text-hoyos-text antialiased selection:bg-hoyos-red selection:text-white;
+    }
+
+    h1, h2 {
+        font-family: var(--font-heading);
+        font-weight: 400;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    h3, h4, h5, h6 {
+        font-synthesis: none;
+    }
+}
+
+.font-display {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-synthesis: none;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Inter styling for product card titles, badges, and compact labels */
+.card-title, .badge-label, .font-label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Mobile Hero Artwork Mask - fades artwork edges smoothly into #080002 */
+@media (max-width: 767px) {
+    .hero-artwork-mask {
+        -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 75%);
+        mask-image: radial-gradient(ellipse at center, #000 45%, transparent 75%);
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+/* Custom scrollbar for edgy aesthetic */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #080002;
+}
+::-webkit-scrollbar-thumb {
+    background: #380a11;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #FF002E;
+}
+
+/* Chrome metallic text effect */
+.chrome-text {
+    background: linear-gradient(180deg, #FFFFFF 0%, #D4D4D8 40%, #71717A 60%, #E4E4E7 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Crimson glowing line from Figma */
+.crimson-glow-line {
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,0,46,0) 0%, rgba(255,0,46,0.9) 50%, rgba(255,0,46,0) 100%);
+    box-shadow: 0 0 16px #FF002E;
+}
