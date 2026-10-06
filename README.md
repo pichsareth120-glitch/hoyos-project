@@ -1,59 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# HOYOS — Gen Z Streetwear & Dark Gothic Fashion
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+HOYOS is an e-commerce platform blending early-2000s Y2K nostalgia, modern streetwear, and dark gothic aesthetics with demon-inspired elements. Built on Laravel 12, Tailwind CSS, Alpine.js, and Vite.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Getting Started & Fresh Clone Setup
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Follow these steps to run HOYOS locally from a fresh repository clone:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Install Dependencies
+```bash
+composer install
+npm install
+npm run build
+```
 
-## Learning Laravel
+### 2. Environment Configuration
+Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Configure your database connection in `.env` (PostgreSQL or SQLite):
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=hoyos
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+*(For quick local development using SQLite, set `DB_CONNECTION=sqlite` and create `database/database.sqlite`)*
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3. Database Migration & Seeding
+Run migrations and seed the initial catalog, categories, demo users, orders, and image records:
+```bash
+php artisan migrate:fresh --seed
+```
 
-## Laravel Sponsors
+### 4. Create Public Storage Symlink (Critical)
+Connect `public/storage` to `storage/app/public` so product photography and WebP assets are served directly:
+```bash
+php artisan storage:link
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 5. Start the Development Server
+```bash
+php artisan serve
+```
+Visit the store at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Seeded Demo Accounts
 
-## Contributing
+The database seeder automatically provides credentials for testing both store manager and customer flows:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Role | Email | Password | Features / Notes |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@hoyos.com` | `password` | Access to `/admin/shipments` to input J&T tracking codes and update dispatch statuses |
+| **Customer** | `customer@hoyos.com` | `password` | Access to `/account`, `/my-orders`, saved addresses, and pre-seeded order `#HOYOS-000123` |
 
-## Code of Conduct
+### Pre-Seeded Sample Order
+- **Order Number**: `HOYOS-000123`
+- **Carrier**: J&T Express
+- **Tracking Code**: `JT123456789KH`
+- **Guest Access URL**: `/orders/HOYOS-000123?token=sample-guest-token-hoyos-000123`
+- **Tracking URL**: `/orders/HOYOS-000123/track?token=sample-guest-token-hoyos-000123`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Product Image Processing Pipeline
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+HOYOS includes an automated fashion image pipeline that generates consistent 4:5 (1200x1500) WebP crops with dark radial gradient backgrounds (#2a0006 to #0a0003), foot glows, and distinct `-front`, `-detail` (tight torso/fabric crop), and `-full` framing.
 
-## License
+### 1. Local Import Mode
+1. Place source photos in `storage/app/imports/{slug}.{jpg,png,webp}` matching the product slug.
+2. (Optional) Provide `storage/app/imports/credits.csv` with columns `slug,photographer,source_url`.
+3. Run the import command:
+```bash
+php artisan products:fetch-images --source=local --force
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2. Pexels API Mode
+Set your API key in `.env`:
+```env
+PEXELS_API_KEY=your_pexels_api_key
+```
+Run the automated search and download command:
+```bash
+php artisan products:fetch-images --source=api --force
+```
+
+### 3. Standalone Python Background Removal & Composition
+The post-processing script uses `rembg` (with `pymatting` fallback) and Pillow:
+```bash
+python scripts/process_product_image.py <input_file> <output_front.webp> <output_detail.webp> <output_full.webp>
+```
+
+---
+
+## Automated Testing & Visual Regression
+
+### Feature & Unit Tests
+Run the complete test suite (56 tests covering authentication, cart, checkout, payment simulation, and order lookup):
+```bash
+php artisan test
+```
+
+### Visual Regression Screenshots
+Capture high-resolution 1400px desktop and 390px mobile viewport screenshots of key customer journeys:
+```bash
+node scripts/take_audit_screenshots.js
+```
+Screenshots are written to `storage/app/screenshots/`.

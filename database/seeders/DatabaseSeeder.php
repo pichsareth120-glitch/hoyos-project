@@ -313,6 +313,7 @@ class DatabaseSeeder extends Seeder
             ['order_number' => 'HOYOS-000123'],
             [
                 'user_id' => $customer->id,
+                'guest_token' => 'sample-guest-token-hoyos-000123',
                 'customer_name' => 'Cinnamon Aari',
                 'customer_phone' => '+85516696969',
                 'customer_email' => 'customer@hoyos.com',
