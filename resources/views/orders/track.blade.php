@@ -48,7 +48,7 @@
                     </span>
                     <div class="flex items-center gap-2.5">
                         <span class="w-3 h-3 rounded-full bg-hoyos-red"></span>
-                        <h2 class="text-xl font-display text-white uppercase tracking-wider">
+                        <h2 class="text-xl font-semibold text-white uppercase tracking-[0.04em]">
                             {{ $shipment && $shipment->carrier ? $shipment->carrier : 'J&T Express' }}
                         </h2>
                     </div>

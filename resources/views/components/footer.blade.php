@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <!-- Brand & Blurb -->
             <div class="md:col-span-5 space-y-5">
-                <span class="font-display text-3xl tracking-widest text-white uppercase italic drop-shadow-[0_0_12px_rgba(255,0,46,0.6)]">
+                <span class="font-display text-3xl tracking-widest text-white uppercase italic">
                     HOY<span class="text-hoyos-red">O</span>S
                 </span>
                 <p class="text-xs text-hoyos-muted leading-relaxed max-w-sm">

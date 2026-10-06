@@ -27,7 +27,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </div>
-                <h3 class="text-base font-bold text-white uppercase tracking-wider">No Orders Found</h3>
+                <h3 class="text-base font-semibold text-white uppercase tracking-[0.04em]">No Orders Found</h3>
                 <p class="text-xs text-hoyos-muted mt-2 mb-6">
                     You haven't placed any orders with Hoyos yet. Discover our cyberpunk & gothic streetwear collection.
                 </p>

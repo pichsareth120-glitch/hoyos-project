@@ -69,6 +69,11 @@ The database seeder automatically provides credentials for testing both store ma
 - **Guest Access URL**: `/orders/HOYOS-000123?token=sample-guest-token-hoyos-000123`
 - **Tracking URL**: `/orders/HOYOS-000123/track?token=sample-guest-token-hoyos-000123`
 
+### ⚠️ Before Deploying
+> **Security Checklist**:
+> 1. **Change Seeded Passwords**: Update or rotate default credentials for `admin@hoyos.com` and `customer@hoyos.com` to strong, unique passwords.
+> 2. **Remove Demo Login Route**: The demo login routes (`/auth/demo` and `/auth/google`) are automatically guarded by `app()->environment('local')` and hidden outside local environments. Ensure `APP_ENV=production` is set in `.env`, or remove the demo login closure from `routes/auth.php` entirely before public release.
+
 ---
 
 ## Product Image Processing Pipeline

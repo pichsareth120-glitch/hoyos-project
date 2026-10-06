@@ -16,7 +16,7 @@
         @apply bg-hoyos-bg text-hoyos-text antialiased selection:bg-hoyos-red selection:text-white;
     }
 
-    h1, h2 {
+    h1 {
         font-family: var(--font-heading);
         font-weight: 400;
         font-synthesis: none;
@@ -25,9 +25,19 @@
         letter-spacing: 0.02em;
     }
 
-    h3, h4, h5, h6 {
+    h2, h3, h4, h5, h6 {
         font-synthesis: none;
     }
+}
+
+/* Section headings under 24px use Inter font-semibold uppercase with letter-spacing 0.04em */
+h2:not(.font-display),
+h3:not(.font-display),
+.section-heading-sm {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .font-display {

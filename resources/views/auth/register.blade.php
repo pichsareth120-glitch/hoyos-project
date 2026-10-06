@@ -99,23 +99,25 @@
                     Create Account
                 </button>
 
-                <!-- Divider -->
-                <div class="relative flex items-center justify-center py-2">
-                    <div class="border-t border-hoyos-border w-full"></div>
-                    <span class="bg-hoyos-bg px-3 text-xs text-hoyos-muted uppercase tracking-wider font-semibold whitespace-nowrap">Or continue with</span>
-                    <div class="border-t border-hoyos-border w-full"></div>
-                </div>
+                @if (app()->environment('local') && Route::has('auth.demo'))
+                    <!-- Divider -->
+                    <div class="relative flex items-center justify-center py-2">
+                        <div class="border-t border-hoyos-border w-full"></div>
+                        <span class="bg-hoyos-bg px-3 text-xs text-hoyos-muted uppercase tracking-wider font-semibold whitespace-nowrap">Or continue with</span>
+                        <div class="border-t border-hoyos-border w-full"></div>
+                    </div>
 
-                <!-- Social Login -->
-                <a 
-                    href="{{ route('auth.google') }}" 
-                    class="w-full py-3 rounded-full bg-hoyos-card border border-hoyos-border hover:border-hoyos-red text-white text-xs font-bold flex items-center justify-center gap-2.5 transition-all shadow-sm hover:shadow-crimson-subtle"
-                >
-                    <svg class="w-4 h-4 text-hoyos-red" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
-                    </svg>
-                    Sign up with Google
-                </a>
+                    <!-- Demo Login -->
+                    <a 
+                        href="{{ route('auth.demo') }}" 
+                        class="w-full py-3 rounded-full bg-hoyos-card border border-hoyos-border hover:border-hoyos-red text-white text-xs font-bold flex items-center justify-center gap-2.5 transition-all shadow-sm hover:shadow-crimson-subtle"
+                    >
+                        <svg class="w-4 h-4 text-hoyos-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        Continue with demo account
+                    </a>
+                @endif
 
                 <!-- Login Link -->
                 <p class="text-center text-xs text-hoyos-muted pt-2">
@@ -129,13 +131,14 @@
 
         <!-- Right: HOYOS Artwork Showcase Panel -->
         <div class="hidden lg:block w-full">
-            <div class="relative rounded-3xl overflow-hidden border-2 border-hoyos-red shadow-[0_0_35px_rgba(255,0,46,0.4)] aspect-[4/5] w-full bg-[#080002]">
+            <div class="relative rounded-3xl overflow-hidden border-2 border-hoyos-red shadow-[0_0_35px_rgba(255,0,46,0.4)] aspect-[4/5] w-full bg-[#080002] flex items-center justify-center p-6 sm:p-8">
+                <!-- Soft background depth gradient -->
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-hoyos-darkred/40 via-[#080002] to-black opacity-80 pointer-events-none"></div>
                 <img 
                     src="{{ asset('images/hoyos/hoyoslogo.png') }}" 
                     alt="HOYOS Artwork" 
-                    class="w-full h-full object-cover object-center"
+                    class="relative z-10 w-full h-auto max-h-full object-contain drop-shadow-[0_0_25px_rgba(255,0,46,0.5)]"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#080002]/60 via-transparent to-[#080002]/20 pointer-events-none"></div>
             </div>
         </div>
     </div>

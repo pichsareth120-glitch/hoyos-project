@@ -3,7 +3,7 @@
         <!-- Header -->
         <div class="text-center space-y-4 mb-14">
             <span class="text-xs font-semibold uppercase tracking-[0.04em] text-hoyos-red">Brand Archive & Attribution</span>
-            <h1 class="text-3xl sm:text-5xl font-display tracking-widest text-white uppercase drop-shadow-[0_0_20px_rgba(255,0,46,0.5)]">
+            <h1 class="text-3xl sm:text-5xl font-display tracking-widest text-white uppercase">
                 Image Credits & Sources
             </h1>
             <p class="text-xs sm:text-sm text-hoyos-muted max-w-2xl mx-auto leading-relaxed">

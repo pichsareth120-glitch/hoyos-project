@@ -88,7 +88,7 @@
                     @endauth
 
                     <div class="space-y-4">
-                        <h2 class="text-sm font-bold uppercase tracking-wider text-white">
+                        <h2 class="text-sm font-semibold uppercase tracking-[0.04em] text-white">
                             Buyer Information
                         </h2>
 
@@ -138,7 +138,7 @@
 
                     <div class="space-y-4 pt-4 border-t border-hoyos-border">
                         <div class="flex items-center justify-between">
-                            <h2 class="text-sm font-bold uppercase tracking-wider text-white">
+                            <h2 class="text-sm font-semibold uppercase tracking-[0.04em] text-white">
                                 Delivery Information
                             </h2>
                             <span class="text-[11px] text-hoyos-dim">Partner: <strong>J&T Express</strong></span>
@@ -207,7 +207,7 @@
 
                 <!-- STEP 2: Payment Method -->
                 <div x-show="step === 2" class="space-y-6">
-                    <h2 class="text-sm font-bold uppercase tracking-wider text-white">
+                    <h2 class="text-sm font-semibold uppercase tracking-[0.04em] text-white">
                         Select Payment Method
                     </h2>
 
@@ -284,7 +284,7 @@
             <!-- Right: Order Summary Box (From Figma) -->
             <div class="lg:col-span-5 space-y-6">
                 <div class="p-6 rounded-2xl bg-hoyos-card border border-hoyos-border shadow-2xl space-y-6">
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-white border-b border-hoyos-border pb-3">
+                    <h3 class="text-sm font-semibold uppercase tracking-[0.04em] text-white border-b border-hoyos-border pb-3">
                         Summary
                     </h3>
 

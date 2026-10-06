@@ -6,7 +6,7 @@
         <div class="relative z-10 space-y-12 text-center sm:text-left">
             <!-- Headline -->
             <div class="space-y-4 text-center">
-                <h1 class="text-4xl sm:text-6xl font-display text-white tracking-widest uppercase drop-shadow-[0_0_15px_rgba(255,0,46,0.5)]">
+                <h1 class="text-4xl sm:text-6xl font-display text-white tracking-widest uppercase">
                     About Us
                 </h1>
                 <p class="text-base sm:text-lg text-hoyos-red italic font-semibold tracking-wide">
@@ -16,7 +16,7 @@
             </div>
 
             <!-- Story Body Text from Figma -->
-            <div class="space-y-8 text-sm sm:text-base text-hoyos-muted leading-relaxed font-light">
+            <div class="space-y-8 text-sm sm:text-base text-zinc-300 leading-relaxed font-light max-w-2xl mx-auto">
                 <p>
                     <strong class="text-white font-bold">HOYOS</strong> is a streetwear brand born from the collision of past and future — where Y2K nostalgia meets modern rebellion. Rooted in gothic aesthetics and dark alternative culture, HOYOS creates pieces that go beyond fashion and into self-expression.
                 </p>

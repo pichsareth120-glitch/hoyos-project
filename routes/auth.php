@@ -34,27 +34,33 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 
-    Route::get('auth/google', function () {
-        $user = \App\Models\User::firstOrCreate(
-            ['email' => 'customer@hoyos.com'],
-            [
-                'name' => 'Cinnamon Aari',
-                'title' => 'Prefer not to say',
-                'first_name' => 'Cinnamon',
-                'last_name' => 'Aari',
-                'phone' => '+85516696969',
-                'date_of_birth' => '2000-01-01',
-                'role' => 'customer',
-                'password' => \Illuminate\Support\Facades\Hash::make('password'),
-            ]
-        );
+    if (app()->environment('local')) {
+        Route::get('auth/demo', function () {
+            $user = \App\Models\User::firstOrCreate(
+                ['email' => 'customer@hoyos.com'],
+                [
+                    'name' => 'Cinnamon Aari',
+                    'title' => 'Prefer not to say',
+                    'first_name' => 'Cinnamon',
+                    'last_name' => 'Aari',
+                    'phone' => '+85516696969',
+                    'date_of_birth' => '2000-01-01',
+                    'role' => 'customer',
+                    'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                ]
+            );
 
-        \Illuminate\Support\Facades\Auth::login($user);
-        request()->session()->regenerate();
+            \Illuminate\Support\Facades\Auth::login($user);
+            request()->session()->regenerate();
 
-        return redirect()->intended(route('home'))
-            ->with('status', 'Signed in successfully with Google demo session.');
-    })->name('auth.google');
+            return redirect()->intended(route('home'))
+                ->with('status', 'Signed in successfully with demo account.');
+        })->name('auth.demo');
+
+        Route::get('auth/google', function () {
+            return redirect()->route('auth.demo');
+        })->name('auth.google');
+    }
 });
 
 Route::middleware('auth')->group(function () {

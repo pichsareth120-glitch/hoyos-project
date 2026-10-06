@@ -49,7 +49,7 @@
             <!-- Section Header -->
             <div class="text-center space-y-3 mb-12 sm:mb-16">
                 <span class="text-xs font-semibold uppercase tracking-[0.04em] text-hoyos-red">Curated Aesthetics</span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display tracking-[0.04em] text-white uppercase drop-shadow-[0_0_20px_rgba(255,0,46,0.4)]">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display tracking-[0.04em] text-white uppercase">
                     Our Collection
                 </h2>
                 <div class="w-20 h-1 bg-hoyos-red mx-auto rounded-full shadow-[0_0_12px_#FF002E]"></div>
@@ -110,7 +110,7 @@
                         <div class="relative z-10 p-5 sm:p-7 space-y-2">
                             <h3 
                                 style="font-size: clamp(1.25rem, 2.4vw, 2.25rem); line-height: 1.1;"
-                                class="font-display text-white uppercase tracking-[0.04em] group-hover:text-hoyos-red transition-colors duration-300 drop-shadow-md"
+                                class="font-display text-white uppercase tracking-[0.04em] group-hover:text-hoyos-red transition-colors duration-300"
                             >
                                 {{ $card['name'] }}
                             </h3>
