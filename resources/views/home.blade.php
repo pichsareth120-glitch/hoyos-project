@@ -4,9 +4,9 @@
         <!-- Cover Background Artwork with uncropped responsive mobile contain -->
         <div class="absolute inset-0 w-full h-full bg-[#080002]">
             <img 
-                src="{{ asset('images/hoyos/hoyoslogo.png') }}" 
+                src="{{ asset('images/hoyos/hoyoslogo-feathered.png') }}" 
                 alt="HOYOS Streetwear Artwork" 
-                class="w-full h-full object-contain object-[center_36%] md:object-cover md:object-center select-none pointer-events-none hero-artwork-mask"
+                class="w-full h-full object-contain object-[center_28%] scale-[1.15] md:scale-100 md:object-cover md:object-center select-none pointer-events-none"
             />
             <!-- Top dark vignette to blend with sticky translucent header -->
             <div class="absolute inset-x-0 top-0 h-16 md:h-32 bg-gradient-to-b from-black/90 via-black/40 to-transparent pointer-events-none"></div>

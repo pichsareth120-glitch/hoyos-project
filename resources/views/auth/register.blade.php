@@ -135,7 +135,7 @@
                 <!-- Soft background depth gradient -->
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-hoyos-darkred/40 via-[#080002] to-black opacity-80 pointer-events-none"></div>
                 <img 
-                    src="{{ asset('images/hoyos/hoyoslogo.png') }}" 
+                    src="{{ asset('images/hoyos/hoyoslogo-feathered.png') }}" 
                     alt="HOYOS Artwork" 
                     class="relative z-10 w-full h-auto max-h-full object-contain drop-shadow-[0_0_25px_rgba(255,0,46,0.5)]"
                 />

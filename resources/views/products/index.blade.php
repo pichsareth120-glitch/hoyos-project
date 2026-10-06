@@ -22,14 +22,14 @@
         <div class="flex items-center gap-2 pb-6 border-b border-hoyos-border overflow-x-auto">
             <a 
                 href="{{ route('category.show') }}"
-                class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all {{ !$activeCategory ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
+                class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all whitespace-nowrap {{ !$activeCategory ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
             >
                 All ({{ $products->total() }})
             </a>
             @foreach($categories as $cat)
                 <a 
                     href="{{ route('category.show', $cat->slug) }}"
-                    class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all {{ $activeCategory && $activeCategory->id === $cat->id ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
+                    class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all whitespace-nowrap {{ $activeCategory && $activeCategory->id === $cat->id ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
                 >
                     {{ $cat->name }}
                 </a>
