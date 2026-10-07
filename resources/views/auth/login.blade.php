@@ -126,7 +126,7 @@
                 <img 
                     src="{{ asset('images/hoyos/hoyoslogo-feathered.png') }}" 
                     alt="HOYOS Artwork" 
-                    class="relative z-10 w-full h-auto max-h-full object-contain drop-shadow-[0_0_25px_rgba(255,0,46,0.5)]"
+                    class="relative z-10 w-full h-auto max-h-full object-contain scale-[1.20] drop-shadow-[0_0_25px_rgba(255,0,46,0.5)]"
                 />
             </div>
         </div>

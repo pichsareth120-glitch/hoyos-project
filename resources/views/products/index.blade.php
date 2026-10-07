@@ -19,21 +19,25 @@
         </div>
 
         <!-- Category Selector Pills -->
-        <div class="flex items-center gap-2 pb-6 border-b border-hoyos-border overflow-x-auto">
-            <a 
-                href="{{ route('category.show') }}"
-                class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all whitespace-nowrap {{ !$activeCategory ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
-            >
-                All ({{ $products->total() }})
-            </a>
-            @foreach($categories as $cat)
+        <div class="relative pb-6 border-b border-hoyos-border">
+            <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pr-4">
                 <a 
-                    href="{{ route('category.show', $cat->slug) }}"
-                    class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all whitespace-nowrap {{ $activeCategory && $activeCategory->id === $cat->id ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
+                    href="{{ route('category.show') }}"
+                    class="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all whitespace-nowrap shrink-0 {{ !$activeCategory ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
                 >
-                    {{ $cat->name }}
+                    All ({{ $products->total() }})
                 </a>
-            @endforeach
+                @foreach($categories as $cat)
+                    <a 
+                        href="{{ route('category.show', $cat->slug) }}"
+                        class="px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-[0.04em] transition-all whitespace-nowrap shrink-0 {{ $activeCategory && $activeCategory->id === $cat->id ? 'bg-hoyos-red text-white shadow-crimson-subtle' : 'bg-hoyos-card border border-hoyos-border text-hoyos-muted hover:text-white' }}"
+                    >
+                        {{ $cat->name }}
+                    </a>
+                @endforeach
+            </div>
+            <!-- Right-edge fade indicator for scrollable mobile view -->
+            <div class="absolute right-0 top-0 bottom-6 w-8 bg-gradient-to-l from-hoyos-bg to-transparent pointer-events-none sm:hidden"></div>
         </div>
 
         <!-- Main Product Grid (2 cols <640px, 3 cols tablet, 4 cols desktop) -->
