@@ -41,13 +41,13 @@
     </section>
 
     <!-- "Our Collection" Section with Dark-to-Red Gradient and Category Cards Directly Below -->
-    <section class="relative w-full py-16 sm:py-24 overflow-hidden bg-gradient-to-b from-hoyos-bg via-[#260309] to-hoyos-bg border-b border-hoyos-border">
+    <section class="relative w-full py-10 sm:py-16 overflow-hidden bg-gradient-to-b from-hoyos-bg via-[#260309] to-hoyos-bg border-b border-hoyos-border">
         <!-- Ambient atmospheric crimson glow in the background -->
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(255,0,46,0.12),transparent_70%)] pointer-events-none"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center space-y-3 mb-12 sm:mb-16">
+            <div class="text-center space-y-3 mb-8 sm:mb-10">
                 <span class="text-xs font-semibold uppercase tracking-[0.04em] text-hoyos-red">Curated Aesthetics</span>
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display tracking-[0.04em] text-white uppercase">
                     Our Collection
@@ -62,21 +62,21 @@
                         'name' => 'Y2K',
                         'slug' => 'y2k',
                         'tagline' => 'Cyber nostalgia, baggy fits & early 2000s rebellious energy',
-                        'image' => asset('images/hoyos/0ffd9c02726576625184fe52b38ace6d.jpg'),
+                        'image' => asset('images/hoyos/collection-y2k.webp'),
                         'number' => '01',
                     ],
                     [
                         'name' => 'GOTH',
                         'slug' => 'goth',
                         'tagline' => 'Dark gothic edge, raw distressed textures & demon aesthetics',
-                        'image' => asset('images/hoyos/43087ed8c434aaf444e0cf52ffb1cd37.jpg'),
+                        'image' => asset('images/hoyos/collection-goth.webp'),
                         'number' => '02',
                     ],
                     [
                         'name' => 'STREETWEAR',
                         'slug' => 'streetwear',
                         'tagline' => 'Oversized Gen Z cuts & bold urban statements',
-                        'image' => asset('images/hoyos/groupphoto1.jpg'),
+                        'image' => asset('images/hoyos/collection-streetwear.webp'),
                         'number' => '03',
                     ],
                 ];
@@ -86,18 +86,17 @@
                 @foreach($categoryCards as $card)
                     <a 
                         href="{{ route('category.show', $card['slug']) }}" 
-                        class="group relative rounded-2xl overflow-hidden bg-hoyos-card border border-hoyos-border hover:border-hoyos-red/70 transition-all duration-500 shadow-2xl hover:shadow-[0_0_35px_rgba(255,0,46,0.35)] aspect-[3/4.2] flex flex-col justify-end transform hover:-translate-y-1.5"
+                        class="group relative rounded-2xl overflow-hidden bg-hoyos-card border border-hoyos-border hover:border-hoyos-red/70 transition-all duration-300 shadow-2xl hover:shadow-[0_0_30px_rgba(255,0,46,0.35)] aspect-[3/4] flex flex-col justify-end transform hover:-translate-y-1.5"
                     >
                         <!-- Category Image with smooth zoom -->
                         <img 
                             src="{{ $card['image'] }}" 
                             alt="{{ $card['name'] }} Collection" 
-                            class="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                            class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
 
-                        <!-- Gradient Overlays for contrast and moody edge -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent group-hover:from-black transition-colors duration-300"></div>
-                        <div class="absolute inset-0 bg-hoyos-red/0 group-hover:bg-hoyos-red/10 transition-colors duration-500 pointer-events-none"></div>
+                        <!-- Bottom gradient overlay behind text block: transparent to #080002 at ~90% opacity -->
+                        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#080002]/90 via-[#080002]/70 to-transparent pointer-events-none transition-opacity duration-300 group-hover:from-[#080002]/95"></div>
 
                         <!-- Drop Number Pill Badge -->
                         <div class="absolute top-4 right-4 z-10">
@@ -107,18 +106,15 @@
                         </div>
 
                         <!-- Content at Bottom of Card -->
-                        <div class="relative z-10 p-5 sm:p-7 space-y-2">
-                            <h3 
-                                style="font-size: clamp(1.25rem, 2.4vw, 2.25rem); line-height: 1.1;"
-                                class="font-display text-white uppercase tracking-[0.04em] group-hover:text-hoyos-red transition-colors duration-300"
-                            >
+                        <div class="relative z-10 p-6 sm:p-7 space-y-2">
+                            <h3 class="font-display text-white uppercase tracking-[0.04em] text-4xl leading-none group-hover:text-hoyos-red transition-colors duration-300">
                                 {{ $card['name'] }}
                             </h3>
-                            <p class="text-xs sm:text-sm text-hoyos-muted group-hover:text-gray-200 transition-colors duration-300 line-clamp-2">
+                            <p class="text-sm text-zinc-300 leading-snug line-clamp-2 min-h-[2.75rem] flex items-start">
                                 {{ $card['tagline'] }}
                             </p>
-                            <div class="pt-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.04em] text-hoyos-red group-hover:text-white transition-colors duration-300">
-                                <span>Explore Drop</span>
+                            <div class="pt-2 flex items-center gap-2 font-sans font-semibold text-[13px] uppercase tracking-[0.08em] text-hoyos-red group-hover:text-white transition-colors duration-300">
+                                <span>EXPLORE DROP</span>
                                 <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                                 </svg>
