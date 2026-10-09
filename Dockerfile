@@ -11,7 +11,7 @@ RUN npm ci --no-audit --prefer-offline
 
 # Copy frontend source files
 COPY resources/ resources/
-COPY vite.config.js tailwind.config.js ./
+COPY vite.config.js tailwind.config.js postcss.config.js ./
 
 # Build production assets into public/build
 RUN npm run build
@@ -86,7 +86,8 @@ RUN mkdir -p \
         /var/www/html/storage/logs \
         /var/www/html/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 755 /var/www/html/public
 
 # Render injects $PORT at runtime (defaults to 10000)
 EXPOSE 10000

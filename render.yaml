@@ -22,6 +22,10 @@ services:
         value: "false"
       - key: APP_KEY
         generateValue: true
+      - key: APP_URL
+        value: https://hoyos-ecommerce.onrender.com
+      - key: ASSET_URL
+        value: https://hoyos-ecommerce.onrender.com
       - key: HOYOS_DEMO_MODE
         value: "true"
       - key: HOYOS_ALLOW_PAYMENT_SIMULATION

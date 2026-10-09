@@ -33,9 +33,18 @@ php artisan migrate --force
 echo "[HOYOS] Running database seeding..."
 php artisan db:seed --force || true
 
+# Ensure APP_URL and ASSET_URL default to HTTPS on Render
+if [ -n "$RENDER_EXTERNAL_URL" ]; then
+    export APP_URL="${APP_URL:-$RENDER_EXTERNAL_URL}"
+    export ASSET_URL="${ASSET_URL:-$RENDER_EXTERNAL_URL}"
+else
+    export APP_URL="${APP_URL:-https://hoyos-ecommerce.onrender.com}"
+    export ASSET_URL="${ASSET_URL:-https://hoyos-ecommerce.onrender.com}"
+fi
+
 # Ensure public storage symlink exists
 echo "[HOYOS] Ensuring public storage symlink exists..."
-php artisan storage:link || true
+php artisan storage:link --force || true
 
 # If APP_KEY is provided, warm Laravel caches
 if [ -n "$APP_KEY" ]; then
