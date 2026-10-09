@@ -6,14 +6,16 @@ FROM node:20-alpine AS frontend-builder
 WORKDIR /app
 
 # Copy package manifests first for Docker caching
-COPY package.json package-lock.json ./
+COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --no-audit --prefer-offline
 
 # Copy frontend source files
-COPY resources/ resources/
-COPY vite.config.js tailwind.config.js postcss.config.js ./
+COPY frontend/ ./
 
-# Build production assets into public/build
+# Pre-create directory where vite writes production assets
+RUN mkdir -p /backend/public
+
+# Build production assets into /backend/public/build
 RUN npm run build
 
 # ==============================================================================
@@ -24,7 +26,7 @@ FROM php:8.2-fpm-bookworm
 LABEL maintainer="HOYOS Team" \
       description="HOYOS E-Commerce Laravel 12 on Render"
 
-WORKDIR /var/www/html
+WORKDIR /var/www/html/backend
 
 # Install required system packages and extension libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -60,11 +62,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install official Composer binary
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
-# Copy application code (filtered by .dockerignore)
-COPY . /var/www/html
+# Copy application directories into container
+COPY backend/ /var/www/html/backend/
+COPY frontend/views/ /var/www/html/frontend/views/
 
-# Copy compiled frontend assets from frontend-builder stage
-COPY --from=frontend-builder /app/public/build /var/www/html/public/build
+# Copy compiled frontend assets from frontend-builder stage into backend/public/build
+COPY --from=frontend-builder /backend/public/build /var/www/html/backend/public/build
 
 # Install production PHP dependencies
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -75,19 +78,19 @@ COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY docker/php.ini /usr/local/etc/php/conf.d/99-hoyos.ini
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh docker/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh /var/www/html/backend/../docker/entrypoint.sh 2>/dev/null || true
 
 # Ensure storage directories exist with appropriate permissions
 RUN mkdir -p \
-        /var/www/html/storage/app/public \
-        /var/www/html/storage/framework/cache \
-        /var/www/html/storage/framework/sessions \
-        /var/www/html/storage/framework/views \
-        /var/www/html/storage/logs \
-        /var/www/html/bootstrap/cache \
-    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 755 /var/www/html/public
+        /var/www/html/backend/storage/app/public \
+        /var/www/html/backend/storage/framework/cache \
+        /var/www/html/backend/storage/framework/sessions \
+        /var/www/html/backend/storage/framework/views \
+        /var/www/html/backend/storage/logs \
+        /var/www/html/backend/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/backend/storage /var/www/html/backend/bootstrap/cache \
+    && chmod -R 775 /var/www/html/backend/storage /var/www/html/backend/bootstrap/cache \
+    && chmod -R 755 /var/www/html/backend/public
 
 # Render injects $PORT at runtime (defaults to 10000)
 EXPOSE 10000

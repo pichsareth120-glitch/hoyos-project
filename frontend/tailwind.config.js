@@ -5,9 +5,10 @@ import forms from '@tailwindcss/forms';
 export default {
     darkMode: 'class',
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        './views/**/*.blade.php',
+        './js/**/*.js',
+        '../backend/storage/framework/views/*.php',
+        '../backend/vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     ],
 
     theme: {

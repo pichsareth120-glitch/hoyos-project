@@ -19,16 +19,16 @@ Follow these steps to set up and run HOYOS locally:
 
 ### 1. Install Dependencies
 ```bash
+# Backend setup
+cd backend
 composer install
-npm install
-npm run build
-```
-
-### 2. Environment Configuration
-Copy `.env.example` to `.env` and generate an application key:
-```bash
 cp .env.example .env
 php artisan key:generate
+
+# Frontend setup & build
+cd ../frontend
+npm install
+npm run build
 ```
 
 Configure your PostgreSQL database connection in `.env`:

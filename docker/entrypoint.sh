@@ -28,17 +28,19 @@ fi
 # ==============================================================================
 # STAGE 2: Storage Permissions & Runtime Directory Setup
 # ==============================================================================
-echo "[HOYOS] Preparing storage and cache directories..."
+echo "[HOYOS] Preparing backend storage and cache directories..."
 
-mkdir -p /var/www/html/storage/app/public \
-         /var/www/html/storage/framework/cache \
-         /var/www/html/storage/framework/sessions \
-         /var/www/html/storage/framework/views \
-         /var/www/html/storage/logs \
-         /var/www/html/bootstrap/cache
+cd /var/www/html/backend
 
-chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+mkdir -p /var/www/html/backend/storage/app/public \
+         /var/www/html/backend/storage/framework/cache \
+         /var/www/html/backend/storage/framework/sessions \
+         /var/www/html/backend/storage/framework/views \
+         /var/www/html/backend/storage/logs \
+         /var/www/html/backend/bootstrap/cache
+
+chown -R www-data:www-data /var/www/html/backend/storage /var/www/html/backend/bootstrap/cache
+chmod -R 775 /var/www/html/backend/storage /var/www/html/backend/bootstrap/cache
 
 # Ensure public storage symlink exists
 php artisan storage:link --force 2>/dev/null || true

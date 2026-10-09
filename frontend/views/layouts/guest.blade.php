@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Scripts & Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['css/app.css', 'js/app.js'])
 </head>
 <body class="bg-hoyos-bg text-hoyos-text font-sans antialiased min-h-screen selection:bg-hoyos-red selection:text-white flex flex-col justify-between">
 

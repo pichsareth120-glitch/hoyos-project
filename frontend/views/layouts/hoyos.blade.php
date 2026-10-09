@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Khmer:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- Scripts & Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['css/app.css', 'js/app.js'])
 </head>
 <body class="bg-[#080103] text-white font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-hoyos-red selection:text-white relative">
 

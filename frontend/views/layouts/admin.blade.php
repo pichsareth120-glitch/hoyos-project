@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:ital,wght@1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- Scripts & Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['css/app.css', 'js/app.js'])
 </head>
 <body class="bg-[#070405] text-zinc-100 font-sans antialiased min-h-screen selection:bg-hoyos-red selection:text-white relative overflow-x-hidden">
 
