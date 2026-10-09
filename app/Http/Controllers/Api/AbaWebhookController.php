@@ -62,6 +62,12 @@ class AbaWebhookController extends Controller
                 }
             }
 
+            if (!$order && preg_match('/^(HOYOS-[A-Z0-9]+)-R\d+$/', $tranId, $matches)) {
+                $order = Order::where('order_number', $matches[1])
+                    ->lockForUpdate()
+                    ->first();
+            }
+
             if (!$order) {
                 return response()->json([
                     'status' => 1,

@@ -11,4 +11,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/webhooks/aba', [AbaWebhookController::class, 'handle'])->name('api.webhooks.aba');
-Route::get('/orders/{orderNumber}/payment-status', [PaymentController::class, 'status'])->name('api.orders.payment-status');
+Route::get('/orders/{orderNumber}/payment-status', [PaymentController::class, 'status'])
+    ->middleware('web')
+    ->name('api.orders.payment-status');
+

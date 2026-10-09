@@ -75,6 +75,37 @@ class AbaPaymentService
     }
 
     /**
+     * Actively query ABA PayWay check-transaction endpoint to synchronize status
+     * when webhooks are unreachable (e.g. localhost development or dropped packets).
+     */
+    public function syncWithPayway(Payment $payment): bool
+    {
+        if ($payment->isPaid() || config('hoyos.demo_mode', false)) {
+            return $payment->isPaid();
+        }
+
+        $tranId = $payment->transaction_id ?: $payment->order?->order_number;
+        if (!$tranId) {
+            return false;
+        }
+
+        $result = $this->paywayService->checkTransaction($tranId);
+
+        // ABA PayWay success status code is 0 (or 'APPROVED'/'approved')
+        $status = $result['status'] ?? null;
+        $paymentStatus = strtoupper((string) ($result['payment_status'] ?? ''));
+
+        if ((string) $status === '0' || $paymentStatus === 'APPROVED' || $paymentStatus === 'PAID') {
+            $apv = $result['apv'] ?? null;
+            $ref = $apv ? "ABA-{$apv}" : "ABA-{$tranId}";
+            return $this->markAsPaid($payment, $ref);
+        }
+
+        return false;
+    }
+
+
+    /**
      * Check if payment has expired and update status.
      * Note: Must only mark expired, does NOT cancel order or restore stock.
      */

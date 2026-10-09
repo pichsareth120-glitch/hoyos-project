@@ -34,6 +34,16 @@ class PaymentController extends Controller
         $payment = $this->abaPaymentService->createKhqrPayment($order);
         $this->abaPaymentService->checkExpiry($payment);
 
+        if (!$order->isPaid() && $payment->isPending() && !config('hoyos.demo_mode', false)) {
+            $this->abaPaymentService->syncWithPayway($payment);
+            $order->refresh();
+            $payment->refresh();
+        }
+
+        if ($order->isPaid()) {
+            return redirect()->route('orders.show', ['orderNumber' => $orderNumber, 'token' => $token]);
+        }
+
         return view('payment.khqr', compact('order', 'payment', 'token'));
     }
 
@@ -49,6 +59,12 @@ class PaymentController extends Controller
         $payment = $order->latestPayment;
         if ($payment) {
             $this->abaPaymentService->checkExpiry($payment);
+
+            if (!$order->isPaid() && $payment->isPending() && !config('hoyos.demo_mode', false)) {
+                $this->abaPaymentService->syncWithPayway($payment);
+                $order->refresh();
+                $payment->refresh();
+            }
         }
 
         return response()->json([

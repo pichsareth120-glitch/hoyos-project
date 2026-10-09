@@ -133,9 +133,29 @@ class AbaPaywayService
             return $existing;
         }
 
+        // If existing pending payment was already approved on ABA, mark it paid and return
+        if (!$this->isDemoMode && $existing && $existing->isPending()) {
+            $check = $this->checkTransaction($existing->transaction_id ?: $order->order_number);
+            if ((string) ($check['status'] ?? '') === '0' || strtoupper((string) ($check['payment_status'] ?? '')) === 'APPROVED') {
+                $order->payment_status = 'paid';
+                if ($order->order_status === 'pending') {
+                    $order->order_status = 'confirmed';
+                }
+                $order->save();
+                $existing->status = Payment::STATUS_PAID;
+                $existing->paid_at = now();
+                $existing->save();
+                return $existing;
+            }
+        }
+
         $amount = number_format((float) ($order->grand_total ?? $order->total_amount), 2, '.', '');
         $reqTime = now()->setTimezone('Asia/Phnom_Penh')->format('YmdHis');
-        $tranId = $order->order_number;
+        $paymentCount = $order->payments()->count();
+        $tranId = $paymentCount > 0 
+            ? substr($order->order_number, 0, 14) . '-R' . $paymentCount 
+            : $order->order_number;
+
 
         // Name split
         $parts = preg_split('/\s+/', trim((string) $order->customer_name));
@@ -237,12 +257,35 @@ class AbaPaywayService
                         collect($params)->map(fn($v, $k) => ['name' => $k, 'contents' => (string) $v])->values()->all()
                     );
 
+                $data = $response->json() ?? [];
+                $isDuplicate = ($data['status']['code'] ?? null) === 4 
+                    || str_contains(strtolower($response->body()), 'duplicated transaction');
+
+                // If transaction ID was already used on sandbox, retry once with an incremental unique suffix
+                if ($isDuplicate) {
+                    $retrySuffix = '-R' . ($paymentCount + 1);
+                    $tranId = substr($order->order_number, 0, 14) . $retrySuffix;
+                    $params['tran_id'] = $tranId;
+                    $params['req_time'] = now()->setTimezone('Asia/Phnom_Penh')->format('YmdHis');
+                    $rawString = $this->buildRawPurchaseString($params);
+                    $params['hash'] = $this->getHash($rawString);
+
+                    $response = Http::timeout(8)
+                        ->asMultipart()
+                        ->post(
+                            $apiUrl,
+                            collect($params)->map(fn($v, $k) => ['name' => $k, 'contents' => (string) $v])->values()->all()
+                        );
+                }
+
                 if ($response->successful()) {
                     $data = $response->json() ?? [];
-                    $qrString = $data['qrString'] ?? $data['qr_string'] ?? null;
-                    $deeplink = $data['abapay_deeplink'] ?? null;
-                    $qrImage = $data['qrImage'] ?? null;
-                    $apiPayload = $data;
+                    if (($data['status']['code'] ?? null) === '00' || !empty($data['qrString']) || !empty($data['qr_string'])) {
+                        $qrString = $data['qrString'] ?? $data['qr_string'] ?? null;
+                        $deeplink = $data['abapay_deeplink'] ?? null;
+                        $qrImage = $data['qrImage'] ?? null;
+                        $apiPayload = $data;
+                    }
                 } else {
                     Log::warning('ABA PayWay purchase returned non-200: ' . $response->body());
                 }

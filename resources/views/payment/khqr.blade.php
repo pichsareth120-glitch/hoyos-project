@@ -50,8 +50,13 @@
 
             async checkStatus() {
                 try {
-                    const url = `/api/orders/${this.orderNumber}/payment-status${this.token ? '?token=' + this.token : ''}`;
-                    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+                    const url = `/payment/${this.orderNumber}/status${this.token ? '?token=' + this.token : ''}`;
+                    const res = await fetch(url, { 
+                        headers: { 
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        } 
+                    });
                     if (res.ok) {
                         const data = await res.json();
                         if (data.is_paid) {
@@ -68,7 +73,13 @@
                             this.status = 'expired';
                             clearInterval(this.pollTimer);
                             clearInterval(this.timerInterval);
+                        } else if (data.is_cancelled) {
+                            clearInterval(this.pollTimer);
+                            clearInterval(this.timerInterval);
                         }
+                    } else if (res.status === 403 || res.status === 404) {
+                        // Unauthorized or missing order: stop polling
+                        clearInterval(this.pollTimer);
                     }
                 } catch (e) {
                     console.error('Polling error', e);

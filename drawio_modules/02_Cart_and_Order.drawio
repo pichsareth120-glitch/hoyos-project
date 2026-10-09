@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-10-09T07:35:00.000Z" agent="Antigravity" version="24.0.0">
+  <diagram id="hoyos_mod_1" name="2. Cart and Order">
+    <mxGraphModel dx="1400" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t_banner_1" value="CUSTOMER FLOW: 2. CART & ORDER MODULE" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#0F172A;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="20" width="850" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="t_sub_1" value="From Slide-Over Bag Items to Immutable Order Placement" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#475569;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="55" width="850" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="co_carts" value="CARTS (Active Bag)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#991B1B;fontColor=#FFFFFF;strokeColor=#991B1B;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="240" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="co_carts_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_carts">
+          <mxGeometry y="28" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_carts_r1" value="&lt;b&gt;[FK]&lt;/b&gt; user_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT (NULL: Guest)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_carts">
+          <mxGeometry y="52" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_carts_r2" value="session_id : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_carts">
+          <mxGeometry y="76" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_carts_r3" value="expires_at : &lt;i style=&quot;color:#64748B;&quot;&gt;TIMESTAMP&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_carts">
+          <mxGeometry y="100" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_cart_items" value="CART_ITEMS (Bag Lines)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#991B1B;fontColor=#FFFFFF;strokeColor=#991B1B;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="240" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="co_cart_items_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_cart_items">
+          <mxGeometry y="28" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_cart_items_r1" value="&lt;b&gt;[FK]&lt;/b&gt; cart_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_cart_items">
+          <mxGeometry y="52" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_cart_items_r2" value="&lt;b&gt;[FK]&lt;/b&gt; product_variant_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_cart_items">
+          <mxGeometry y="76" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_cart_items_r3" value="quantity : &lt;i style=&quot;color:#64748B;&quot;&gt;INTEGER&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_cart_items">
+          <mxGeometry y="100" width="240" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_product_variants" value="PRODUCT_VARIANTS (Size Stock)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#065F46;fontColor=#FFFFFF;strokeColor=#065F46;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="380" y="220" width="250" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="co_product_variants_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_product_variants">
+          <mxGeometry y="28" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_product_variants_r1" value="&lt;b&gt;[FK]&lt;/b&gt; product_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_product_variants">
+          <mxGeometry y="52" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_product_variants_r2" value="&lt;b&gt;[UK]&lt;/b&gt; sku : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(100)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_product_variants">
+          <mxGeometry y="76" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_product_variants_r3" value="size : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(50)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_product_variants">
+          <mxGeometry y="100" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_product_variants_r4" value="stock_quantity : &lt;i style=&quot;color:#64748B;&quot;&gt;INTEGER&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_product_variants">
+          <mxGeometry y="124" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders" value="ORDERS (Placed Order)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#991B1B;fontColor=#FFFFFF;strokeColor=#991B1B;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="700" y="120" width="260" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="28" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r1" value="&lt;b&gt;[UK]&lt;/b&gt; order_number : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(64)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="52" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r2" value="&lt;b&gt;[FK]&lt;/b&gt; user_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT (NULL: Guest)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="76" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r3" value="guest_token : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(64)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="100" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r4" value="customer_name : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="124" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r5" value="customer_phone : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(50)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="148" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r6" value="shipping_address : &lt;i style=&quot;color:#64748B;&quot;&gt;TEXT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="172" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r7" value="province : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(100)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="196" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r8" value="subtotal : &lt;i style=&quot;color:#64748B;&quot;&gt;DECIMAL(10,2)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="220" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r9" value="total_amount : &lt;i style=&quot;color:#64748B;&quot;&gt;DECIMAL(10,2)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="244" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r10" value="order_status : &lt;i style=&quot;color:#64748B;&quot;&gt;'pending' | 'confirmed'&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="268" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_orders_r11" value="payment_status : &lt;i style=&quot;color:#64748B;&quot;&gt;'pending'&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_orders">
+          <mxGeometry y="292" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items" value="ORDER_ITEMS (Purchased Lines)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#991B1B;fontColor=#FFFFFF;strokeColor=#991B1B;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="190" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="28" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r1" value="&lt;b&gt;[FK]&lt;/b&gt; order_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="52" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r2" value="&lt;b&gt;[FK]&lt;/b&gt; product_variant_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="76" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r3" value="product_name : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="100" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r4" value="variant_size : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(50)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="124" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r5" value="unit_price : &lt;i style=&quot;color:#64748B;&quot;&gt;DECIMAL(10,2)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="148" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="co_order_items_r6" value="quantity : &lt;i style=&quot;color:#64748B;&quot;&gt;INTEGER&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="co_order_items">
+          <mxGeometry y="172" width="250" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1_0" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#475569;strokeWidth=1.8;fontSize=10;fontStyle=1;fontColor=#334155;fontFamily=Helvetica;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="co_carts" target="co_cart_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1_1" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#475569;strokeWidth=1.8;fontSize=10;fontStyle=1;fontColor=#334155;fontFamily=Helvetica;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="co_product_variants" target="co_cart_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1_2" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.4;entryX=0;entryY=0.4;strokeColor=#475569;strokeWidth=1.8;fontSize=10;fontStyle=1;fontColor=#334155;fontFamily=Helvetica;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="co_orders" target="co_order_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1_3" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#475569;strokeWidth=1.8;fontSize=10;fontStyle=1;fontColor=#334155;fontFamily=Helvetica;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="co_product_variants" target="co_order_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="co_note" value="&lt;b&gt;CHECKOUT TRANSLATION&lt;/b&gt;&lt;br/&gt;When a customer checks out, ephemeral cart lines are converted into permanent order lines. Product name, size, and price are copied onto order_items so subsequent catalog changes do not affect completed orders." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9C3;strokeColor=#CA8A04;fontColor=#854D0E;fontSize=11;align=left;spacing=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="530" width="900" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-10-09T07:35:00.000Z" agent="Antigravity" version="24.0.0">
+  <diagram id="hoyos_mod_1" name="12. Site Management">
+    <mxGraphModel dx="1400" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t_banner_1" value="ADMIN FLOW: 12. SITE MANAGEMENT MODULE" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#0F172A;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="20" width="850" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="t_sub_1" value="Storefront Merchandising: Banners, Drops, Featured & New Arrival Badges" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#475569;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="55" width="850" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="site_categories" value="CATEGORIES (Hero Banners)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#065F46;fontColor=#FFFFFF;strokeColor=#065F46;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="260" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="site_categories_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_categories">
+          <mxGeometry y="28" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_categories_r1" value="&lt;b&gt;[UK]&lt;/b&gt; slug : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_categories">
+          <mxGeometry y="52" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_categories_r2" value="name : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_categories">
+          <mxGeometry y="76" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_categories_r3" value="banner_image : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255) (Hero URL)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_categories">
+          <mxGeometry y="100" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products" value="PRODUCTS (Curated Showcases)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#065F46;fontColor=#FFFFFF;strokeColor=#065F46;rounded=1;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="280" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products_r0" value="&lt;b&gt;[PK]&lt;/b&gt; id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_products">
+          <mxGeometry y="28" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products_r1" value="&lt;b&gt;[FK]&lt;/b&gt; category_id : &lt;i style=&quot;color:#64748B;&quot;&gt;BIGINT&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_products">
+          <mxGeometry y="52" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products_r2" value="&lt;b&gt;[UK]&lt;/b&gt; slug : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_products">
+          <mxGeometry y="76" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products_r3" value="collection_name : &lt;i style=&quot;color:#64748B;&quot;&gt;VARCHAR(255) (e.g. Neon Drift)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_products">
+          <mxGeometry y="100" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products_r4" value="is_featured : &lt;i style=&quot;color:#64748B;&quot;&gt;BOOLEAN (Homepage Hero)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#F8FAFC;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_products">
+          <mxGeometry y="124" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="site_products_r5" value="is_new_arrival : &lt;i style=&quot;color:#64748B;&quot;&gt;BOOLEAN (New Drop Tag)&lt;/i&gt;" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;fontColor=#1E293B;fontFamily=Helvetica;" vertex="1" parent="site_products">
+          <mxGeometry y="148" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1_0" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#475569;strokeWidth=1.8;fontSize=10;fontStyle=1;fontColor=#334155;fontFamily=Helvetica;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="site_categories" target="site_products">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="site_note" value="&lt;b&gt;STOREFRONT MERCHANDISING&lt;/b&gt;&lt;br/&gt;Rather than a bloated CMS, site management is controlled directly via category hero banners, collection grouping tags, and boolean flags (is_featured, is_new_arrival) rendered directly in storefront Blade templates." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9C3;strokeColor=#CA8A04;fontColor=#854D0E;fontSize=11;align=left;spacing=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="80" y="380" width="640" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

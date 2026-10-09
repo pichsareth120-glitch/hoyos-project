@@ -47,3 +47,49 @@ test('polling status endpoint reports pending then paid after simulation', funct
     expect($order->payment_status)->toBe('paid');
     expect($order->order_status)->toBe('confirmed');
 });
+
+test('authenticated user can poll payment status without guest token', function () {
+    $user = User::factory()->create();
+    $order = Order::factory()->create([
+        'user_id' => $user->id,
+        'guest_token' => null,
+        'payment_method' => 'aba_khqr',
+        'payment_status' => 'pending',
+    ]);
+
+    // Initialize payment
+    $this->actingAs($user)->get('/payment/' . $order->order_number);
+
+    // Poll via web route without token
+    $webResponse = $this->actingAs($user)->getJson('/payment/' . $order->order_number . '/status');
+    $webResponse->assertStatus(200)
+        ->assertJson([
+            'is_paid' => false,
+            'payment_status' => 'pending',
+        ]);
+
+    // Poll via api route without token
+    $apiResponse = $this->actingAs($user)->getJson('/api/orders/' . $order->order_number . '/payment-status');
+    $apiResponse->assertStatus(200)
+        ->assertJson([
+            'is_paid' => false,
+            'payment_status' => 'pending',
+        ]);
+});
+
+test('unauthenticated user cannot poll another user order status without token', function () {
+    $user = User::factory()->create();
+    $order = Order::factory()->create([
+        'user_id' => $user->id,
+        'guest_token' => null,
+        'payment_method' => 'aba_khqr',
+        'payment_status' => 'pending',
+    ]);
+
+    $response = $this->getJson('/payment/' . $order->order_number . '/status');
+    $response->assertStatus(403);
+
+    $apiResponse = $this->getJson('/api/orders/' . $order->order_number . '/payment-status');
+    $apiResponse->assertStatus(403);
+});
+
