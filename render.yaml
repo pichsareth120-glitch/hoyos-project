@@ -11,9 +11,8 @@ services:
     plan: free
     region: oregon
     healthCheckPath: /up
-    # Render Free does not provide Shell/SSH access, pre-deploy commands, or one-off jobs.
-    # To run migrations, temporarily set RUN_MIGRATIONS_ON_START="true" during initial deployment,
-    # confirm completion in logs, then set it back to "false" and redeploy.
+    # Container entrypoint automatically clears stale caches, runs database
+    # migrations, seeds initial demo data, and links storage before server startup.
     envVars:
       - key: APP_NAME
         value: HOYOS
@@ -23,8 +22,6 @@ services:
         value: "false"
       - key: APP_KEY
         generateValue: true
-      - key: RUN_MIGRATIONS_ON_START
-        value: "false"
       - key: HOYOS_DEMO_MODE
         value: "true"
       - key: HOYOS_ALLOW_PAYMENT_SIMULATION
@@ -35,6 +32,26 @@ services:
         fromDatabase:
           name: hoyos-db
           property: connectionString
+      - key: DB_HOST
+        fromDatabase:
+          name: hoyos-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: hoyos-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: hoyos-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: hoyos-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: hoyos-db
+          property: password
       - key: SESSION_DRIVER
         value: database
       - key: CACHE_STORE

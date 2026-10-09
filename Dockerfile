@@ -75,7 +75,7 @@ COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY docker/php.ini /usr/local/etc/php/conf.d/99-hoyos.ini
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh docker/entrypoint.sh
 
 # Ensure storage directories exist with appropriate permissions
 RUN mkdir -p \

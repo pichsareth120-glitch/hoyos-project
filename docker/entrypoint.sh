@@ -19,25 +19,27 @@ mkdir -p /var/www/html/storage/app/public \
 chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Ensure public storage symlink exists
-php artisan storage:link --force || true
+# Clear stale caches
+echo "[HOYOS] Clearing cached configuration, routes, and views..."
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
-# Opt-in database migration check for environments without Shell access (e.g. Render Free)
-if [ "$RUN_MIGRATIONS_ON_START" = "true" ]; then
-    echo "[HOYOS] RUN_MIGRATIONS_ON_START is 'true'. Running database migrations..."
-    if php artisan migrate --force; then
-        echo "[HOYOS] Database migrations completed successfully."
-    else
-        echo "[HOYOS] ERROR: Database migration failed! Halting container startup." >&2
-        exit 1
-    fi
-else
-    echo "[HOYOS] RUN_MIGRATIONS_ON_START is not 'true' (value: '${RUN_MIGRATIONS_ON_START:-unset}'). Skipping automatic database migrations."
-fi
+# Run database migrations
+echo "[HOYOS] Running database migrations..."
+php artisan migrate --force
+
+# Seed database tables
+echo "[HOYOS] Running database seeding..."
+php artisan db:seed --force || true
+
+# Ensure public storage symlink exists
+echo "[HOYOS] Ensuring public storage symlink exists..."
+php artisan storage:link || true
 
 # If APP_KEY is provided, warm Laravel caches
 if [ -n "$APP_KEY" ]; then
-    echo "[HOYOS] Warming Laravel configuration and route caches..."
+    echo "[HOYOS] Warming Laravel configuration, route, and view caches..."
     php artisan config:cache || true
     php artisan route:cache || true
     php artisan view:cache || true
