@@ -61,6 +61,14 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
+        $isDemoMode = (bool) config('hoyos.demo_mode', false);
+        $allowedPaymentMethods = $isDemoMode ? 'aba_khqr' : 'aba_khqr,cod';
+        $paymentMessages = [
+            'payment_method.in' => $isDemoMode
+                ? 'In demo mode, only simulated ABA KHQR payment is permitted. Cash on Delivery is disabled.'
+                : 'The selected payment method is invalid.',
+        ];
+
         $validated = $request->validate([
             'customer_name' => 'required|string|min:2|max:100',
             'customer_phone' => ['required', 'string', 'regex:/^(?:\+855|0)[1-9]\d{7,8}$/'],
@@ -68,9 +76,9 @@ class CheckoutController extends Controller
             'province' => 'required|string|max:100',
             'shipping_address' => 'required|string|min:5|max:255',
             'delivery_notes' => 'nullable|string|max:500',
-            'payment_method' => 'required|in:aba_khqr,cod',
+            'payment_method' => 'required|in:' . $allowedPaymentMethods,
             'save_address' => 'nullable|boolean',
-        ]);
+        ], $paymentMessages);
 
         $cart = $this->cartService->getCart();
 

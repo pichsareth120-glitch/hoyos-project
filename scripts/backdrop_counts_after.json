@@ -1,0 +1,1549 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "http://127.0.0.1:8000/admin",
+    "count": 11,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6 flex f",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 295,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 199,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6 h-full",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 514,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover p-5 sm:p-6 transitio",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 222,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Audit Logs Index",
+    "url": "http://127.0.0.1:8000/admin/audit-logs",
+    "count": 8,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 959,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Audit Log Detail",
+    "url": "http://127.0.0.1:8000/admin/audit-logs/1",
+    "count": 9,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 239,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 239,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 239,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass   p-0 overflow-hid",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 162,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 548,
+        "h": 198,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 548,
+        "h": 198,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Customers Index",
+    "url": "http://127.0.0.1:8000/admin/customers",
+    "count": 8,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 155,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Customer Detail",
+    "url": "http://127.0.0.1:8000/admin/customers/2",
+    "count": 9,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "sticky top-16 z-30 bg-[#0e0407]/[0.96] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1120,
+        "h": 72,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 106,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 296,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 200,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Inventory Index",
+    "url": "http://127.0.0.1:8000/admin/inventory",
+    "count": 8,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 1574,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Inventory Show",
+    "url": "http://127.0.0.1:8000/admin/inventory/2",
+    "count": 7,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl p-4 sm:p-5 border border-white/[",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 80,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 453,
+        "h": 489,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 643,
+        "h": 313,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Invoices Index",
+    "url": "http://127.0.0.1:8000/admin/invoices",
+    "count": 8,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 460,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Invoice Show",
+    "url": "http://127.0.0.1:8000/admin/invoices/1",
+    "count": 5,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "sticky top-16 z-30 bg-[#0e0407]/[0.96] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1024,
+        "h": 72,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "invoice-printable-card glass rounded-2xl p-6 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1024,
+        "h": 865,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Orders Index",
+    "url": "http://127.0.0.1:8000/admin/orders",
+    "count": 8,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 460,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Order Detail",
+    "url": "http://127.0.0.1:8000/admin/orders/1",
+    "count": 10,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "sticky top-16 z-30 bg-[#0e0407]/[0.96] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1120,
+        "h": 100,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6 lg:col",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 254,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6 space-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 254,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 173,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 548,
+        "h": 154,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 548,
+        "h": 154,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Payments Index",
+    "url": "http://127.0.0.1:8000/admin/payments",
+    "count": 9,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 468,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Products Index",
+    "url": "http://127.0.0.1:8000/admin/products",
+    "count": 9,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 268,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 905,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Product Create",
+    "url": "http://127.0.0.1:8000/admin/products/create",
+    "count": 9,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "sticky top-16 z-30 bg-[#0e0407]/[0.96] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1120,
+        "h": 72,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 475,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 419,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 281,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 264,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 332,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Product Edit",
+    "url": "http://127.0.0.1:8000/admin/products/1/edit",
+    "count": 11,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "sticky top-16 z-30 bg-[#0e0407]/[0.96] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1120,
+        "h": 72,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 739,
+        "h": 454,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 264,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 357,
+        "h": 332,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 650,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl text-zinc-100 glass  p-5 sm:p-6",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 1054,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Reports Index",
+    "url": "http://127.0.0.1:8000/admin/reports",
+    "count": 5,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/75 backdrop-blur-sm transit",
+        "filter": "blur(4px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 56,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Reports Sales",
+    "url": "http://127.0.0.1:8000/admin/reports/sales",
+    "count": 5,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/75 backdrop-blur-sm transit",
+        "filter": "blur(4px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 56,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Reports Products",
+    "url": "http://127.0.0.1:8000/admin/reports/products",
+    "count": 7,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/75 backdrop-blur-sm transit",
+        "filter": "blur(4px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 56,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 643,
+        "h": 271,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 453,
+        "h": 580,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Reports Customers",
+    "url": "http://127.0.0.1:8000/admin/reports/customers",
+    "count": 10,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/75 backdrop-blur-sm transit",
+        "filter": "blur(4px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 56,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 363,
+        "h": 123,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 363,
+        "h": 123,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 363,
+        "h": 123,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 548,
+        "h": 401,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 548,
+        "h": 401,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Reports Regions",
+    "url": "http://127.0.0.1:8000/admin/reports/regions",
+    "count": 9,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/75 backdrop-blur-sm transit",
+        "filter": "blur(4px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 56,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 363,
+        "h": 128,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 363,
+        "h": 128,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 363,
+        "h": 128,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "rounded-2xl glass glass-hover text-zinc-100 transi",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 182,
+        "parentHasBlur": false
+      }
+    ]
+  },
+  {
+    "name": "Shipments Index",
+    "url": "http://127.0.0.1:8000/admin/shipments",
+    "count": 10,
+    "elements": [
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "ASIDE",
+        "className": "fixed inset-y-0 left-0 lg:sticky lg:top-0 h-screen",
+        "filter": "blur(20px) saturate(1.4)",
+        "w": 256,
+        "h": 900,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "HEADER",
+        "className": "h-16 glass-strong !bg-[#0e0407]/[0.92] backdrop-bl",
+        "filter": "blur(24px)",
+        "w": 1184,
+        "h": 64,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "A",
+        "className": "group relative block rounded-2xl glass p-3.5 sm:p-",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 265,
+        "h": 156,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "glass rounded-2xl border border-white/[0.08] shado",
+        "filter": "blur(16px) saturate(1.4)",
+        "w": 1120,
+        "h": 941,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "bg-[#0e0407]/[0.96] backdrop-blur-xl rounded-2xl p",
+        "filter": "blur(24px)",
+        "w": 1120,
+        "h": 58,
+        "parentHasBlur": false
+      },
+      {
+        "tag": "DIV",
+        "className": "fixed inset-0 z-50 flex items-center justify-cente",
+        "filter": "blur(12px)",
+        "w": 0,
+        "h": 0,
+        "parentHasBlur": false
+      }
+    ]
+  }
+]

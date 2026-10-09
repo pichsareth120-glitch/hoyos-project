@@ -1,19 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Khmer:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --font-heading: 'Anton', sans-serif;
-    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'Anton', 'Noto Sans Khmer', sans-serif;
+    --font-sans: 'Inter', 'Noto Sans Khmer', sans-serif;
     --font-mono: 'Space Mono', monospace;
+
+    /* Shadcn/UI Token Specifications mapped to HOYOS Dark Glass */
+    --background: 4 100% 2%;        /* #080002 */
+    --foreground: 0 0% 100%;       /* #FFFFFF */
+    --card: 345 67% 4%;             /* #120407 */
+    --card-foreground: 0 0% 100%;
+    --popover: 345 67% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 349 100% 50%;        /* #FF002E */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 345 30% 10%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 345 15% 15%;
+    --muted-foreground: 345 10% 65%;
+    --accent: 349 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 349 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 345 30% 12%;
+    --input: 345 30% 12%;
+    --ring: 349 100% 50%;
+    --radius: 0.875rem;             /* 14px */
+
+    /* HOYOS Dark Glassmorphism Design Tokens */
+    --glass-fill: rgba(255, 255, 255, 0.045);
+    --glass-fill-elevated: rgba(255, 255, 255, 0.075);
+    --glass-fill-subtle: rgba(255, 255, 255, 0.025);
+    --glass-border: rgba(255, 255, 255, 0.095);
+    --glass-border-hover: rgba(255, 255, 255, 0.18);
+    --glass-border-crimson: rgba(255, 0, 46, 0.45);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    --glass-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.65);
+    --glass-blur: 20px;
+    --glass-blur-elevated: 28px;
+
+    /* Primary Crimson Brand */
+    --color-crimson: #FF002E;
+    --color-crimson-hover: #E00029;
+    --glow-crimson: 0 0 24px rgba(255, 0, 46, 0.35);
+    --glow-crimson-lg: 0 0 36px rgba(255, 0, 46, 0.55);
+
+    /* Text hierarchy contrast (WCAG AA >= 4.5:1) */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: rgba(255, 255, 255, 0.70);
+    --color-text-muted: rgba(255, 255, 255, 0.48);
 }
 
 @layer base {
     body {
         font-family: var(--font-sans);
-        @apply bg-hoyos-bg text-hoyos-text antialiased selection:bg-hoyos-red selection:text-white;
+        @apply bg-[#080103] text-white antialiased selection:bg-hoyos-red selection:text-white;
     }
 
     h1 {
@@ -30,7 +76,7 @@
     }
 }
 
-/* Section headings under 24px use Inter font-semibold uppercase with letter-spacing 0.04em */
+/* Section headings */
 h2:not(.font-display),
 h3:not(.font-display),
 .section-heading-sm {
@@ -48,20 +94,11 @@ h3:not(.font-display),
     letter-spacing: 0.02em;
 }
 
-/* Inter styling for product card titles, badges, and compact labels */
-.card-title, .badge-label, .font-label {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-
-
 .font-mono {
     font-family: var(--font-mono);
 }
 
-/* Custom scrollbar for edgy aesthetic */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -70,45 +107,219 @@ h3:not(.font-display),
     background: #080002;
 }
 ::-webkit-scrollbar-thumb {
-    background: #380a11;
+    background: #2b080f;
     border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #FF002E;
 }
 
-/* Chrome metallic text effect */
-.chrome-text {
-    background: linear-gradient(180deg, #FFFFFF 0%, #D4D4D8 40%, #71717A 60%, #E4E4E7 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Crimson glowing line from Figma */
-.crimson-glow-line {
-    height: 2px;
-    background: linear-gradient(90deg, rgba(255,0,46,0) 0%, rgba(255,0,46,0.9) 50%, rgba(255,0,46,0) 100%);
-    box-shadow: 0 0 16px #FF002E;
-}
-
-/* Browser autofill dark overrides so autofilled fields remain dark */
+/* Browser autofill dark overrides */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px #14060a inset !important;
+    -webkit-box-shadow: 0 0 0 1000px #110307 inset !important;
     -webkit-text-fill-color: #ffffff !important;
     caret-color: #ffffff !important;
-    border-color: rgba(255, 0, 46, 0.25) !important;
+    border-color: rgba(255, 0, 46, 0.35) !important;
     transition: background-color 5000s ease-in-out 0s;
 }
 
-input:-moz-autofill,
-input:-moz-autofill:hover,
-input:-moz-autofill:focus {
-    box-shadow: 0 0 0 1000px #14060a inset !important;
-    -moz-text-fill-color: #ffffff !important;
-    filter: none;
+/* ==========================================================================
+   Dark Glassmorphism Design System Tokens & Utilities
+   ========================================================================== */
+
+@layer components {
+    /* Standard Glass Surface (Cards, Containers, Sections) */
+    .glass {
+        background: var(--glass-fill);
+        backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-highlight), var(--glass-shadow);
+    }
+
+    /* Elevated Glass Surface (Drawers, Modals, Overlays, Dropdowns) */
+    .glass-elevated {
+        background: var(--glass-fill-elevated);
+        backdrop-filter: blur(var(--glass-blur-elevated)) saturate(150%);
+        -webkit-backdrop-filter: blur(var(--glass-blur-elevated)) saturate(150%);
+        border: 1px solid var(--glass-border-hover);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--glass-shadow-elevated);
+    }
+
+    /* Subtle Glass Surface (Sub-panels, nested rows, list headers) */
+    .glass-subtle {
+        background: var(--glass-fill-subtle);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    /* Interactive Glass Surface (Cards with hover lift and ambient crimson sheen) */
+    .glass-interactive {
+        transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 200ms ease,
+                    box-shadow 200ms ease,
+                    background 200ms ease;
+    }
+    .glass-interactive:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                    0 12px 36px rgba(0, 0, 0, 0.60),
+                    0 0 20px rgba(255, 0, 46, 0.14);
+    }
+
+    /* Selected / Active Glass state (Radio cards, selected addresses, active tabs) */
+    .glass-selected {
+        background: rgba(255, 0, 46, 0.08) !important;
+        border-color: rgba(255, 0, 46, 0.55) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                    0 0 24px rgba(255, 0, 46, 0.25) !important;
+    }
+
+    /* Glass Input / Select / Textarea Field */
+    .glass-input {
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #FFFFFF;
+        border-radius: 10px;
+        transition: all 180ms ease;
+    }
+    .glass-input:hover {
+        background: rgba(255, 255, 255, 0.055);
+        border-color: rgba(255, 255, 255, 0.20);
+    }
+    .glass-input:focus {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: #FF002E !important;
+        box-shadow: 0 0 0 2px #080002, 0 0 0 4px #FF002E, 0 0 20px rgba(255, 0, 46, 0.3) !important;
+        outline: none !important;
+    }
+
+    /* Glow Button Utilities */
+    .glow-primary {
+        box-shadow: 0 0 24px rgba(255, 0, 46, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    .glow-primary:hover {
+        box-shadow: 0 0 34px rgba(255, 0, 46, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .glow-subtle {
+        box-shadow: 0 0 16px rgba(255, 0, 46, 0.20);
+    }
+
+    /* Accessible focus ring */
+    .focus-ring {
+        outline: none;
+    }
+    .focus-ring:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px #080002, 0 0 0 4px #FF002E !important;
+    }
+}
+
+/* Fallback for environments lacking backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+    .glass {
+        background: #0E0205 !important;
+    }
+    .glass-elevated {
+        background: #140308 !important;
+    }
+    .glass-subtle {
+        background: #090103 !important;
+    }
+    .glass-selected {
+        background: #25060f !important;
+    }
+}
+
+/* Accessible Global Focus Rings */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: none !important;
+    border-color: #FF002E !important;
+    box-shadow: 0 0 0 2px #080002, 0 0 0 4px #FF002E !important;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px #080002, 0 0 0 4px #FF002E;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .animate-pulse,
+    .animate-spin,
+    .animate-ping,
+    .animate-bounce {
+        animation: none !important;
+    }
+
+    .glass-interactive:hover {
+        transform: none !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    [x-transition],
+    [x-transition\:enter],
+    [x-transition\:leave] {
+        transition: none !important;
+        transition-duration: 0s !important;
+    }
+}
+
+/* Print Stylesheet for Receipts & Confirmations */
+@media print {
+    body {
+        background: #FFFFFF !important;
+        color: #111827 !important;
+    }
+
+    header,
+    footer,
+    .no-print,
+    [aria-hidden="true"].fixed,
+    .fixed.inset-0,
+    button:not(.print-include) {
+        display: none !important;
+    }
+
+    .glass,
+    .glass-elevated,
+    .glass-subtle {
+        background: #FFFFFF !important;
+        border: 1px solid #E5E7EB !important;
+        box-shadow: none !important;
+        color: #111827 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    .text-white,
+    .text-hoyos-muted,
+    .text-white\/50,
+    .text-white\/60,
+    .text-white\/70,
+    .text-white\/80 {
+        color: #1F2937 !important;
+    }
+
+    .text-hoyos-red {
+        color: #B91C1C !important;
+    }
 }
 

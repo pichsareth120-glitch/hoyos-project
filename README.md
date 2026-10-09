@@ -4,9 +4,18 @@ HOYOS is an e-commerce platform blending early-2000s Y2K nostalgia, modern stree
 
 ---
 
-## Getting Started & Fresh Clone Setup
+## System Requirements & Prerequisites
 
-Follow these steps to run HOYOS locally from a fresh repository clone:
+- **PHP**: 8.2 or higher (with `pdo_pgsql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `gd` extensions)
+- **Database**: PostgreSQL 16+ (or SQLite 3.35+ for lightweight local testing)
+- **Node.js**: 18.x or higher & npm
+- **Composer**: 2.x
+
+---
+
+## Getting Started & Setup
+
+Follow these steps to set up and run HOYOS locally:
 
 ### 1. Install Dependencies
 ```bash
@@ -16,28 +25,45 @@ npm run build
 ```
 
 ### 2. Environment Configuration
-Copy `.env.example` to `.env`:
+Copy `.env.example` to `.env` and generate an application key:
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-Configure your database connection in `.env` (PostgreSQL or SQLite):
+Configure your PostgreSQL database connection in `.env`:
 ```env
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
 DB_PORT=5432
 DB_DATABASE=hoyos
-DB_USERNAME=your_username
+DB_USERNAME=postgres
 DB_PASSWORD=your_password
 ```
-*(For quick local development using SQLite, set `DB_CONNECTION=sqlite` and create `database/database.sqlite`)*
+
+#### Specialized HOYOS Environment Configuration Keys
+Add or customize these application configuration keys in `.env`:
+```env
+# Grace period in minutes after 5-min QR expiry where customer can retry before auto-cancellation
+HOYOS_PAYMENT_GRACE_MINUTES=15
+
+# Enable sandbox payment simulator endpoints (/payment/{order}/simulate). Defaults to true ONLY in local/testing
+HOYOS_ALLOW_PAYMENT_SIMULATION=true
+
+# Timezone used for daily, weekly, and monthly aggregation grouping in admin reports
+HOYOS_REPORT_TIMEZONE=Asia/Phnom_Penh
+
+# Stock quantity threshold below which alerts are displayed on the admin dashboard and inventory table
+HOYOS_LOW_STOCK_THRESHOLD=5
+```
 
 ### 3. Database Migration & Seeding
-Run migrations and seed the initial catalog, categories, demo users, orders, and image records:
+Run database migrations and seed default products, categories, and test accounts:
 ```bash
-php artisan migrate:fresh --seed
+php artisan migrate
+php artisan db:seed
 ```
+> ⚠️ **CAUTION**: Never run `migrate:fresh`, `migrate:reset`, or `db:wipe` on a production or staging database. All schema updates are strictly additive and reversible.
 
 ### 4. Create Public Storage Symlink (Critical)
 Connect `public/storage` to `storage/app/public` so product photography and WebP assets are served directly:
@@ -45,11 +71,34 @@ Connect `public/storage` to `storage/app/public` so product photography and WebP
 php artisan storage:link
 ```
 
-### 5. Start the Development Server
+### 5. Running the Background Task Scheduler
+HOYOS requires the scheduler to run in the background to automatically check unpaid orders past their 15-minute grace period (`hoyos:check-payment-expiries`), cancel them, restore variant stock, and log audit entries.
+
+- **For Local Development**:
+  ```bash
+  php artisan schedule:work
+  ```
+- **For Production (Crontab)**:
+  Add the following entry to your production server crontab (`crontab -e`):
+  ```bash
+  * * * * * cd /path/to/hoyos && php artisan schedule:run >> /dev/null 2>&1
+  ```
+
+### 6. Creating an Administrator Account
+To create a dedicated administrator user via CLI:
+```bash
+php artisan tinker --execute="App\Models\User::factory()->admin()->create(['email' => 'admin@hoyos.com', 'name' => 'Store Admin', 'password' => bcrypt('SecurePassword123!')]);"
+```
+Or grant the admin role to an existing registered user:
+```bash
+php artisan tinker --execute="App\Models\User::where('email', 'user@hoyos.com')->update(['role' => 'admin', 'account_status' => 'active']);"
+```
+
+### 7. Start the Development Server
 ```bash
 php artisan serve
 ```
-Visit the store at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Visit the storefront at [http://127.0.0.1:8000](http://127.0.0.1:8000) and the backoffice at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
 
 ---
 
@@ -104,15 +153,24 @@ The post-processing script uses `rembg` (with `pymatting` fallback) and Pillow:
 python scripts/process_product_image.py <input_file> <output_front.webp> <output_detail.webp> <output_full.webp>
 ```
 
----
-
 ## Automated Testing & Visual Regression
 
 ### Feature & Unit Tests
-Run the complete test suite (56 tests covering authentication, cart, checkout, payment simulation, and order lookup):
-```bash
-php artisan test
-```
+
+The test suite covers customer journeys, guest checkout, payment simulation, 15-minute grace period expiry, admin backoffice RBAC, inventory ledgers, and live analytics.
+
+- **PostgreSQL Test Suite (`hoyos_test`)**:
+  Execute tests against the dedicated PostgreSQL test database:
+  ```bash
+  php artisan test -c phpunit.pgsql.xml
+  ```
+  *(A hard safety guard in `tests/TestCase.php` prevents test execution if connected to the live `hoyos` database).*
+
+- **In-Memory SQLite Fast Test Suite**:
+  Run fast unit/feature tests against in-memory SQLite:
+  ```bash
+  php artisan test
+  ```
 
 ### Visual Regression Screenshots
 Capture high-resolution 1400px desktop and 390px mobile viewport screenshots of key customer journeys:

@@ -71,9 +71,29 @@ class Order extends Model
             END ASC");
     }
 
-    public function payment()
+    public function payments()
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasMany(Payment::class);
+    }
+
+    public function latestPayment()
+    {
+        return $this->hasOne(Payment::class)->latestOfMany();
+    }
+
+    public function statusHistories()
+    {
+        return $this->hasMany(OrderStatusHistory::class);
+    }
+
+    public function orderStatusHistories()
+    {
+        return $this->hasMany(OrderStatusHistory::class);
+    }
+
+    public function stockAdjustments()
+    {
+        return $this->hasMany(StockAdjustment::class);
     }
 
     public function shipment()
@@ -91,9 +111,26 @@ class Order extends Model
         return $this->payment_method === 'cod';
     }
 
+    /**
+     * Orders ready for administrative fulfillment/dispatch:
+     * Cash on Delivery orders, or orders with confirmed payment (paid).
+     */
+    public function scopeReadyForFulfillment($query)
+    {
+        return $query->where(function ($q) {
+            $q->where('payment_method', 'cod')
+              ->orWhere('payment_status', 'paid');
+        });
+    }
+
     public function getShippingCostAttribute(): float
     {
         return (float) ($this->shipping_fee ?? 0.00);
+    }
+
+    public function getPhoneAttribute(): ?string
+    {
+        return $this->customer_phone;
     }
 
     public function canAccess(?User $user, ?string $guestToken = null): bool

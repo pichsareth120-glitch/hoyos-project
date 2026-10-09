@@ -17,6 +17,10 @@ class PaymentService
      */
     public function initializePayment(Order $order): Payment
     {
+        if (config('hoyos.demo_mode', false) && $order->payment_method !== 'aba_khqr') {
+            throw new InvalidArgumentException("Payment method '{$order->payment_method}' is disabled in demo mode. Only simulated ABA KHQR is permitted.");
+        }
+
         if ($order->payment_method === 'aba_khqr') {
             return $this->abaPaymentService->createKhqrPayment($order);
         }

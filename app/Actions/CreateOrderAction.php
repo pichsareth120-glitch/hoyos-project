@@ -5,7 +5,10 @@ namespace App\Actions;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\OrderStatusHistory;
+use App\Models\ProductVariant;
 use App\Models\Shipment;
+use App\Models\StockAdjustment;
 use App\Models\User;
 use App\Services\PaymentService;
 use Exception;
@@ -54,14 +57,63 @@ class CreateOrderAction
                 'payment_status' => 'pending',
             ]);
 
-            // 2. Create Order Items & Deduct Stock
+            // 2. Lock variant rows ordered by ID to avoid deadlocks
+            $variantIds = $cart->items
+                ->pluck('product_variant_id')
+                ->unique()
+                ->sort()
+                ->values()
+                ->all();
+
+            $variants = ProductVariant::with('product')
+                ->whereIn('id', $variantIds)
+                ->orderBy('id')
+                ->lockForUpdate()
+                ->get()
+                ->keyBy('id');
+
+            // 3. Deduct stock conditionally and write stock ledger entries
             foreach ($cart->items as $item) {
-                $variant = $item->variant;
-                if ($variant->stock_quantity < $item->quantity) {
+                $variant = $variants->get($item->product_variant_id);
+
+                if (!$variant) {
+                    throw new Exception("Product variant was not found.");
+                }
+
+                if ($variant->trashed()) {
+                    throw new Exception("Product variant (Size {$variant->size}) is no longer available.");
+                }
+
+                if (!$variant->product || $variant->product->trashed() || !$variant->product->is_active) {
+                    throw new Exception("Product '{$variant->product?->name}' is currently unavailable for purchase.");
+                }
+
+                $quantityBefore = (int) $variant->stock_quantity;
+
+                // Conditional update: only deduct if stock_quantity >= qty
+                $affected = ProductVariant::where('id', $variant->id)
+                    ->where('stock_quantity', '>=', $item->quantity)
+                    ->decrement('stock_quantity', $item->quantity);
+
+                if (!$affected) {
                     throw new Exception("Product {$variant->product->name} (Size {$variant->size}) is out of stock.");
                 }
 
-                $variant->decrement('stock_quantity', $item->quantity);
+                $quantityAfter = $quantityBefore - (int) $item->quantity;
+                $variant->stock_quantity = $quantityAfter;
+
+                // Write stock_adjustments row per item
+                StockAdjustment::create([
+                    'product_variant_id' => $variant->id,
+                    'order_id' => $order->id,
+                    'admin_id' => null,
+                    'adjustment_type' => 'order_reserved',
+                    'quantity_change' => -(int) $item->quantity,
+                    'quantity_before' => $quantityBefore,
+                    'quantity_after' => $quantityAfter,
+                    'reason' => "Order #{$order->order_number} Reserved",
+                    'created_at' => now(),
+                ]);
 
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -74,7 +126,16 @@ class CreateOrderAction
                 ]);
             }
 
-            // 3. Initialize Shipment record
+            // 4. Write first order_status_history row
+            \App\Services\OrderStatusRecorder::record(
+                $order,
+                null,
+                'confirmed',
+                null,
+                "Order #{$order->order_number} created"
+            );
+
+            // 5. Initialize Shipment record
             Shipment::create([
                 'order_id' => $order->id,
                 'carrier' => 'J&T Express',
@@ -82,13 +143,13 @@ class CreateOrderAction
                 'status' => Shipment::STATUS_ORDER_CONFIRMED,
             ]);
 
-            // 4. Initialize Payment
+            // 6. Initialize Payment
             $this->paymentService->initializePayment($order);
 
-            // 5. Empty Cart
+            // 7. Empty Cart
             $cart->items()->delete();
 
-            return $order->load(['items.variant.product', 'payment', 'shipment']);
+            return $order->load(['items.variant.product', 'latestPayment', 'payments', 'shipment']);
         });
     }
 }

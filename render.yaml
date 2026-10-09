@@ -1,0 +1,56 @@
+# Render Blueprint Specification for HOYOS E-Commerce (Free Demo Tier)
+# Documentation: https://render.com/docs/blueprint-spec
+# NOTE: Render free PostgreSQL instances expire after 30 days unless upgraded.
+# Free web services spin down after 15 minutes of inactivity and cold-start in ~30-50s.
+
+services:
+  - type: web
+    name: hoyos-ecommerce
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /up
+    # Render Free does not provide Shell/SSH access, pre-deploy commands, or one-off jobs.
+    # To run migrations, temporarily set RUN_MIGRATIONS_ON_START="true" during initial deployment,
+    # confirm completion in logs, then set it back to "false" and redeploy.
+    envVars:
+      - key: APP_NAME
+        value: HOYOS
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: RUN_MIGRATIONS_ON_START
+        value: "false"
+      - key: HOYOS_DEMO_MODE
+        value: "true"
+      - key: HOYOS_ALLOW_PAYMENT_SIMULATION
+        value: "true"
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hoyos-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: info
+      - key: TRUSTED_PROXIES
+        value: "*"
+
+databases:
+  - name: hoyos-db
+    plan: free
+    region: oregon
+    databaseName: hoyos
+    user: hoyos_user

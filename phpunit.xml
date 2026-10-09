@@ -32,5 +32,8 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="ABA_PAYWAY_BASE_URL" value="https://checkout-sandbox.payway.com.kh"/>
+        <env name="ABA_PAYWAY_MERCHANT_ID" value="ec479222"/>
+        <env name="ABA_PAYWAY_API_KEY" value="D6B2E124A4441A38778A6DD7E2A45250DADAE7BD"/>
     </php>
 </phpunit>

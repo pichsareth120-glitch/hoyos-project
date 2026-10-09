@@ -33,7 +33,19 @@ class CartController extends Controller
         ]);
 
         $quantity = $validated['quantity'] ?? 1;
-        $this->cartService->addItem($validated['variant_id'], $quantity);
+
+        try {
+            $this->cartService->addItem($validated['variant_id'], $quantity);
+        } catch (\DomainException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ], 422);
+            }
+            return back()->with('error', $e->getMessage());
+        }
+
         $cart = $this->cartService->getCart();
 
         if ($request->wantsJson()) {

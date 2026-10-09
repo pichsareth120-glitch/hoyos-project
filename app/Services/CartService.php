@@ -44,6 +44,14 @@ class CartService
             return $cart->load(['items.variant.product.images']);
         }
 
+        $guestCartId = Session::get('guest_cart_id');
+        if ($guestCartId) {
+            $cart = Cart::where('id', $guestCartId)->whereNull('user_id')->first();
+            if ($cart) {
+                return $cart->load(['items.variant.product.images']);
+            }
+        }
+
         $sessionId = Session::getId();
         $cart = Cart::firstOrCreate(['session_id' => $sessionId, 'user_id' => null]);
         Session::put('guest_cart_id', $cart->id);
@@ -53,7 +61,11 @@ class CartService
     public function addItem(int $variantId, int $quantity = 1): CartItem
     {
         $cart = $this->getCart();
-        $variant = ProductVariant::findOrFail($variantId);
+        $variant = ProductVariant::with('product')->whereNull('deleted_at')->find($variantId);
+
+        if (!$variant || !$variant->product || $variant->product->trashed() || !$variant->product->is_active) {
+            throw new \DomainException('This product item is currently unavailable.');
+        }
 
         $cartItem = $cart->items()->where('product_variant_id', $variantId)->first();
 

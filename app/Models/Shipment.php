@@ -31,6 +31,7 @@ class Shipment extends Model
     public const STATUS_SHIPPED = 'shipped';
     public const STATUS_OUT_FOR_DELIVERY = 'out_for_delivery';
     public const STATUS_DELIVERED = 'delivered';
+    public const STATUS_CANCELLED = 'cancelled';
 
     public function order()
     {
@@ -55,6 +56,7 @@ class Shipment extends Model
             self::STATUS_SHIPPED => 'Shipped',
             self::STATUS_OUT_FOR_DELIVERY => 'Out for Delivery',
             self::STATUS_DELIVERED => 'Delivered',
+            self::STATUS_CANCELLED => 'Cancelled',
             default => ucfirst(str_replace('_', ' ', $this->status)),
         };
     }

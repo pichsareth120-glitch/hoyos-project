@@ -17,7 +17,7 @@ class OrderController extends Controller
             return redirect()->route('login')->with('info', 'Please sign in to view your orders.');
         }
 
-        $orders = $user->orders()->with(['items.variant.product.primaryImage', 'shipment', 'payment'])->latest()->paginate(10);
+        $orders = $user->orders()->with(['items.variant.product.primaryImage', 'shipment', 'latestPayment'])->latest()->paginate(10);
 
         return view('orders.index', compact('orders'));
     }
@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function show(Request $request, string $orderNumber)
     {
         $token = $request->query('token') ?: session('guest_order_token_' . $orderNumber);
-        $order = Order::with(['items.variant.product.primaryImage', 'shipment', 'payment'])->where('order_number', $orderNumber)->firstOrFail();
+        $order = Order::with(['items.variant.product.primaryImage', 'shipment', 'latestPayment'])->where('order_number', $orderNumber)->firstOrFail();
 
         if (!$order->canAccess(Auth::user(), $token)) {
             abort(403, 'Unauthorized access to this order.');
@@ -37,7 +37,7 @@ class OrderController extends Controller
     public function track(Request $request, string $orderNumber)
     {
         $token = $request->query('token') ?: session('guest_order_token_' . $orderNumber);
-        $order = Order::with(['items.variant.product.primaryImage', 'shipment', 'payment'])->where('order_number', $orderNumber)->firstOrFail();
+        $order = Order::with(['items.variant.product.primaryImage', 'shipment', 'latestPayment'])->where('order_number', $orderNumber)->firstOrFail();
 
         if (!$order->canAccess(Auth::user(), $token)) {
             abort(403, 'Unauthorized access to this order tracking.');

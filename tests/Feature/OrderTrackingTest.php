@@ -63,7 +63,9 @@ test('public order lookup verifies order number and customer phone', function ()
 test('admin can enter jt tracking code and advance fulfillment status', function () {
     $admin = User::factory()->admin()->create();
 
-    $order = Order::factory()->create();
+    $order = Order::factory()->create([
+        'payment_status' => 'paid',
+    ]);
 
     $response = $this->actingAs($admin)->put('/admin/shipments/' . $order->id, [
         'tracking_number' => 'JT8877665544KH',

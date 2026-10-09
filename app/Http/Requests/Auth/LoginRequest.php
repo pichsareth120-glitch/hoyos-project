@@ -50,6 +50,16 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        $user = Auth::user();
+        if ($user && $user->account_status === 'suspended') {
+            Auth::guard('web')->logout();
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => 'Your account is suspended. Please contact customer support.',
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

@@ -1,0 +1,56 @@
+<USER_REQUEST>
+RULES FOR ALL PHASES
+- Do not commit or push. Do not modify, delete or reset any existing database record, including order HOYOS-000003 and all passwords. Test only on SQLite and on the throwaway database hoyos_test.
+- Never remove, skip or weaken a test. List every test you add or change, with the reason.
+- After each phase report: files changed, full-suite counts on SQLite AND on phpunit.pgsql.xml (including skipped), then STOP and wait for me.
+
+PHASE 1: BACKEND CORRECTNESS (add a test for each item)
+1a. ShipmentController: when the tracking number changes, write an audit row with its old and new value. In ShipmentService::updateStatus, write the status audit only if the status actually changed. If neither changed, write nothing.
+1b. ProductController and ProductVariantController restore: capture old deleted_at BEFORE calling restore(), so the audit shows the real old value to null.
+1c. Product update audit: store only the changed fields in both old_values and new_values.
+1d. Product images: when upload, set-primary or delete changes which image is primary, also log the demoted or promoted image.
+1e. System cancellations (CancelOrderAction with no admin): if admin_audit_logs.admin_id is already nullable, write an audit row with a null actor and show "System" in the audit UI. If it is not nullable, change nothing and tell me.
+1f. Suspend: when the session driver is "database", delete that user's rows from the sessions table in the suspend action, inside the same transaction, so the modal copy is true. Keep the middleware as a backstop. Test it.
+1g. Dispatch queue (/admin/shipments and its stat cards) and the dashboard "Orders awaiting processing" count: include only orders that are COD or have payment_status = paid, using ONE shared scope so both places always agree. Do not change how orders are created.
+1h. Product Edit page N+1: stop the variant loop from re-querying the product (eager load or setRelation). Show the before/after query count for /admin/products/{id}/edit.
+Also add a README note on how to run the scheduler (php artisan schedule:work locally, a cron line for production). Do not run it.
+
+PHASE 2: ACCESSIBILITY
+2a. ConfirmModal and the product variant-edit modal: Escape closes, focus is trapped inside, focus returns to the trigger, role="dialog", aria-modal="true", aria-labelledby pointing at the title. Prefer one shared modal implementation for both.
+2b. Contrast: introduce muted-text tokens that are at least 4.5:1 on the page and card backgrounds. Replace text-white/20..40, text-zinc-600 and text-zinc-500 where they carry information (timestamps, helper text, table secondary text). Purely decorative separators may stay dim. Show a before/after contrast table.
+2c. Sidebar submenu: add aria-expanded and aria-controls. When the sidebar is collapsed, a keyboard user must still reach the child links (flyout on focus/Enter, or the parent navigates to All Products).
+2d. Below 640px, give buttons, pagination, filter pills and modal close buttons a hit area of at least 40px (padding or a pseudo-element). Do not enlarge them on desktop.
+2e. prefers-reduced-motion: also disable animate-pulse and the Alpine modal transitions.
+2f. Use :focus-visible rings on form inputs and table action links.
+Verify by keyboard only: Tab through one page, open and close every modal type with Escape, and use the collapsed sidebar.
+
+PHASE 3: PERFORMANCE
+3a. Budget for backdrop-filter: only the sidebar, topbar, ActionBar, modals/dropdowns and top-level GlassCards may blur. Everything inside them (badges, chips, inputs, table rows and cells, nested cards, nav items, stat-card internals) uses a translucent fill with NO blur. Never nest a blurred element inside a blurred element. Target 12 or fewer blurred elements per page. Report before/after counts for all 20 pages, and compare before/after screenshots of Dashboard, Orders, Products and Audit Logs so I can confirm the look barely changes.
+
+PHASE 4: CONSISTENCY, TIME, CLEANUP
+4a. Create App\Support\Time (Asia/Phnom_Penh from config('hoyos.*') if a timezone setting exists there, otherwise add one) that formats with an "ICT" label and offers a tooltip showing the UTC value. Replace every admin timestamp with it. Do not change stored values.
+4b. Humanize labels: audit filter dropdowns and the Target Entity column ("product_variants" to "Product variants", "update_status" to "Update status"), using one shared helper that StatusBadge also uses.
+4c. Replace hard-coded hex in <option> tags with a token class. Remove font-mono from prose (reports/_definitions, the product edit notices and error paragraphs).
+4d. Replace the legacy x-card in the four reports views, and the raw glass divs in shipments/index and invoices/show, with x-ui.glass-card. Leave the raw tables inside detail cards alone.
+4e. List, but do NOT delete, the dead code: admin/audit_logs forwarders, the unused root components (badge, button, input, card once the reports are migrated) and the scratch scripts. Never include scripts/process_product_image.py. Wait for my OK.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-08T21:45:20+07:00.
+
+The user's current state is as follows:
+Active Document: d:\Hoyos-project\storage\app\screenshots\invalid_test.txt (LANGUAGE_PLAINTEXT)
+Cursor is on line: 1
+Other open documents:
+- d:\Hoyos-project\resources\views\components\ui\error-summary.blade.php (LANGUAGE_BLADE)
+- d:\Hoyos-project\resources\views\admin\customers\show.blade.php (LANGUAGE_BLADE)
+- d:\Hoyos-project\routes\web.php (LANGUAGE_PHP)
+- d:\Hoyos-project\routes\console.php (LANGUAGE_PHP)
+- d:\Hoyos-project\scripts\verify_invoices_viewports.js (LANGUAGE_JAVASCRIPT)
+Browser State:
+  Page C063F94C04F0ABD7C26DD85231605F9D (System Audit Logs | HOYOS Backoffice) - http://127.0.0.1:8000/admin/audit-logs [ACTIVE]
+    Viewport: 1920x945, Page Height: 1483
+  Page B38EF34BE68B8C1AB8B88E48CD4A961E (GitHub - nextlevelbuilder/ui-ux-pro-max-skill: An AI skill that provides design intelligence for building professional UI/UX across multiple platforms. · GitHub) - https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+    Viewport: 1920x945, Page Height: 18468
+  Page 7D64C8A2E5898D500DA90031675DD17C (Testing_product | HOYOS) - http://127.0.0.1:8000/product/testing-product
+    Viewport: 1920x945, Page Height: 2177
+</ADDITIONAL_METADATA>

@@ -33,6 +33,14 @@ class Payment extends Model
         ];
     }
 
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_PROCESSING = 'processing';
+    public const STATUS_PAID = 'paid';
+    public const STATUS_FAILED = 'failed';
+    public const STATUS_EXPIRED = 'expired';
+    public const STATUS_REFUNDED = 'refunded';
+    public const STATUS_CANCELLED = 'cancelled';
+
     public function order()
     {
         return $this->belongsTo(Order::class);

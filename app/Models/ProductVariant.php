@@ -10,6 +10,8 @@ class ProductVariant extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const DEFAULT_LOW_STOCK_THRESHOLD = 5;
+
     public const SIZE_ORDER = [
         'XS' => 1,
         'S' => 2,
@@ -19,6 +21,24 @@ class ProductVariant extends Model
         'XXL' => 6,
         'One size' => 7,
     ];
+
+    public static function lowStockThreshold(): int
+    {
+        return (int) config('hoyos.low_stock_threshold', self::DEFAULT_LOW_STOCK_THRESHOLD);
+    }
+
+    public function scopeLowStock($query, ?int $threshold = null)
+    {
+        $threshold = $threshold ?? self::lowStockThreshold();
+
+        return $query->where('stock_quantity', '<=', $threshold)
+            ->where('stock_quantity', '>', 0);
+    }
+
+    public function scopeOutOfStock($query)
+    {
+        return $query->where('stock_quantity', '<=', 0);
+    }
 
     public static function sizeOrderIndex(?string $size): int
     {
@@ -55,6 +75,11 @@ class ProductVariant extends Model
     public function product()
     {
         return $this->belongsTo(Product::class)->withTrashed();
+    }
+
+    public function stockAdjustments()
+    {
+        return $this->hasMany(StockAdjustment::class);
     }
 
     public function getEffectivePriceAttribute(): float

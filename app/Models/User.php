@@ -28,7 +28,11 @@ class User extends Authenticatable
         'date_of_birth',
         'phone',
         'avatar',
-        'role',
+    ];
+
+    protected $attributes = [
+        'role' => 'customer',
+        'account_status' => 'active',
     ];
 
     /**
@@ -68,6 +72,21 @@ class User extends Authenticatable
     public function defaultAddress()
     {
         return $this->hasOne(Address::class)->where('is_default', true);
+    }
+
+    public function orderStatusHistories()
+    {
+        return $this->hasMany(OrderStatusHistory::class, 'admin_id');
+    }
+
+    public function stockAdjustments()
+    {
+        return $this->hasMany(StockAdjustment::class, 'admin_id');
+    }
+
+    public function adminAuditLogs()
+    {
+        return $this->hasMany(AdminAuditLog::class, 'admin_id');
     }
 
     public function isAdmin(): bool

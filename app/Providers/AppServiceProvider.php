@@ -19,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // A public demo may run with APP_ENV=production, but simulation must
+        // never be enabled in a non-demo production application.
+        if (app()->environment('production')
+            && config('hoyos.allow_payment_simulation')
+            && !config('hoyos.demo_mode')) {
+            \Illuminate\Support\Facades\Log::critical('CRITICAL SECURITY HAZARD: Payment simulation is enabled in production environment.');
+            throw new \RuntimeException('Security misconfiguration: Payment simulation cannot be enabled in production.');
+        }
     }
 }

@@ -2,6 +2,16 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\AuditLogController as AdminAuditLogController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\InventoryController as AdminInventoryController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\ProductImageController as AdminProductImageController;
+use App\Http\Controllers\Admin\ProductVariantController as AdminProductVariantController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\ShipmentController as AdminShipmentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -42,10 +52,12 @@ Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.s
 Route::get('/payment/{orderNumber}', [PaymentController::class, 'show'])->name('payment.show');
 Route::get('/payment/{orderNumber}/status', [PaymentController::class, 'status'])->name('payment.status');
 Route::post('/payment/{orderNumber}/simulate', [PaymentController::class, 'simulateSuccess'])->name('payment.simulate');
+Route::post('/payment/{orderNumber}/retry', [PaymentController::class, 'retry'])->name('payment.retry');
 
 // Orders & Order Tracking
-Route::match(['get', 'post'], '/track-order', [OrderController::class, 'lookup'])->name('orders.lookup');
+Route::match(['get', 'post'], '/track-order', [OrderController::class, 'lookup'])->middleware('throttle:15,1')->name('orders.lookup');
 Route::get('/orders/{orderNumber}', [OrderController::class, 'show'])->name('orders.show');
+Route::get('/orders/{orderNumber}/success', [OrderController::class, 'show'])->name('orders.success');
 Route::get('/orders/{orderNumber}/track', [OrderController::class, 'track'])->name('orders.track');
 Route::post('/orders/{orderNumber}/convert-guest', [OrderController::class, 'convertGuest'])->name('orders.convert-guest');
 
@@ -70,10 +82,85 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Admin Operations (Shipments & J&T Tracking Code Entry)
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+// Admin Operations (Orders, Payments, Shipments, Dashboard, Reports)
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // ==========================================
+    // SALES & FULFILLMENT
+    // ==========================================
+    // Orders
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::put('/orders/{order}/processing', [AdminOrderController::class, 'processing'])->name('orders.processing');
+    Route::post('/orders/{order}/cancel', [AdminOrderController::class, 'cancel'])->name('orders.cancel');
+
+    // Invoices & Receipts
+    Route::get('/invoices', [AdminOrderController::class, 'invoices'])->name('invoices.index');
+    Route::get('/invoices/{order}', [AdminOrderController::class, 'invoiceShow'])->name('invoices.show');
+
+    // Payments
+    Route::get('/payments', [AdminPaymentController::class, 'index'])->name('payments.index');
+    Route::post('/payments/{payment}/mark-paid', [AdminPaymentController::class, 'markPaid'])->name('payments.mark-paid');
+    Route::post('/payments/{payment}/refund', [AdminPaymentController::class, 'refund'])->name('payments.refund');
+
+    // Shipments
     Route::get('/shipments', [AdminShipmentController::class, 'index'])->name('shipments.index');
     Route::put('/shipments/{order}', [AdminShipmentController::class, 'update'])->name('shipments.update');
+
+    // ==========================================
+    // CATALOG & INVENTORY
+    // ==========================================
+    // Products
+    Route::get('/products', [AdminProductController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [AdminProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [AdminProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('products.update');
+    Route::post('/products/{product}/toggle-active', [AdminProductController::class, 'toggleActive'])->name('products.toggle-active');
+    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('products.destroy');
+    Route::post('/products/{product}/restore', [AdminProductController::class, 'restore'])->name('products.restore');
+
+    // Variants (managed inside product edit page)
+    Route::post('/products/{product}/variants', [AdminProductVariantController::class, 'store'])->name('variants.store');
+    Route::put('/variants/{variant}', [AdminProductVariantController::class, 'update'])->name('variants.update');
+    Route::delete('/variants/{variant}', [AdminProductVariantController::class, 'destroy'])->name('variants.destroy');
+    Route::post('/variants/{variant}/restore', [AdminProductVariantController::class, 'restore'])->name('variants.restore');
+
+    // Images (managed inside product edit page)
+    Route::post('/products/{product}/images', [AdminProductImageController::class, 'store'])->name('images.store');
+    Route::put('/images/{image}', [AdminProductImageController::class, 'update'])->name('images.update');
+    Route::post('/images/{image}/set-primary', [AdminProductImageController::class, 'setPrimary'])->name('images.set-primary');
+    Route::delete('/images/{image}', [AdminProductImageController::class, 'destroy'])->name('images.destroy');
+
+    // Inventory
+    Route::get('/inventory', [AdminInventoryController::class, 'index'])->name('inventory.index');
+    Route::get('/inventory/{variant}', [AdminInventoryController::class, 'show'])->name('inventory.show');
+    Route::post('/inventory/{variant}/adjust', [AdminInventoryController::class, 'adjust'])->name('inventory.adjust');
+
+    // ==========================================
+    // CUSTOMERS & RELATIONSHIPS
+    // ==========================================
+    Route::get('/customers', [AdminCustomerController::class, 'index'])->name('customers.index');
+    Route::get('/customers/{user}', [AdminCustomerController::class, 'show'])->name('customers.show');
+    Route::post('/customers/{user}/suspend', [AdminCustomerController::class, 'suspend'])->name('customers.suspend');
+    Route::post('/customers/{user}/activate', [AdminCustomerController::class, 'activate'])->name('customers.activate');
+
+    // ==========================================
+    // SYSTEM: AUDIT & REPORTS
+    // ==========================================
+    // Audit Logs (Read-only)
+    Route::get('/audit-logs', [AdminAuditLogController::class, 'index'])->name('audit-logs.index');
+    Route::get('/audit-logs/{log}', [AdminAuditLogController::class, 'show'])->name('audit-logs.show');
+
+    // Reports (Read-only live aggregations)
+    Route::get('/reports', function () {
+        return redirect()->route('admin.reports.sales');
+    })->name('reports.index');
+    Route::get('/reports/sales', [AdminReportController::class, 'sales'])->name('reports.sales');
+    Route::get('/reports/products', [AdminReportController::class, 'products'])->name('reports.products');
+    Route::get('/reports/regions', [AdminReportController::class, 'regions'])->name('reports.regions');
+    Route::get('/reports/customers', [AdminReportController::class, 'customers'])->name('reports.customers');
 });
 
 require __DIR__ . '/auth.php';

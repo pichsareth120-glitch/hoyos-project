@@ -39,4 +39,14 @@ return [
         'key' => env('PEXELS_API_KEY'),
     ],
 
+    'aba_payway' => [
+        'base_url'         => env('ABA_PAYWAY_BASE_URL', 'https://checkout-sandbox.payway.com.kh'),
+        'merchant_id'      => env('ABA_PAYWAY_MERCHANT_ID', 'ec479222'),
+        // No credential fallback: missing credentials must fail closed.
+        'api_key'          => env('ABA_PAYWAY_API_KEY'),
+        'private_key'      => env('ABA_PAYWAY_RSA_PRIVATE_KEY'),
+        'private_key_path' => env('ABA_PAYWAY_RSA_PRIVATE_KEY_PATH', storage_path('app/keys/aba_private.pem')),
+        'webhook_url'      => env('ABA_PAYWAY_WEBHOOK_URL'),
+    ],
+
 ];

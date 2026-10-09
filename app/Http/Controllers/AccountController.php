@@ -15,7 +15,7 @@ class AccountController extends Controller
         $user = Auth::user();
         $tab = $request->query('tab', 'personal');
         $addresses = $user->addresses()->latest()->get();
-        $orders = $user->orders()->with(['items.variant.product.primaryImage', 'shipment', 'payment'])->latest()->get();
+        $orders = $user->orders()->with(['items.variant.product.primaryImage', 'shipment', 'latestPayment'])->latest()->get();
 
         return view('account.index', compact('user', 'tab', 'addresses', 'orders'));
     }
