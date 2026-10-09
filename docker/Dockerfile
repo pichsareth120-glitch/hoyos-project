@@ -3,20 +3,24 @@
 # ==============================================================================
 FROM node:20-alpine AS frontend-builder
 
-WORKDIR /app
+# Mirror repo layout so relative paths (../backend/public) resolve to /app/backend/public
+WORKDIR /app/frontend
 
-# Copy package manifests first for Docker caching
+# Copy package manifests first for Docker layer caching
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --no-audit --prefer-offline
 
-# Copy frontend source files
+# Copy full frontend directory (views, css, js, configs for Tailwind class preservation)
 COPY frontend/ ./
 
 # Pre-create directory where vite writes production assets
-RUN mkdir -p /backend/public
+RUN mkdir -p /app/backend/public
 
-# Build production assets into /backend/public/build
+# Build production assets into /app/backend/public/build
 RUN npm run build
+
+# Validate that the build generated manifest.json early
+RUN test -f /app/backend/public/build/manifest.json
 
 # ==============================================================================
 # Stage 2: Production PHP-FPM + Nginx Application Container
@@ -67,7 +71,7 @@ COPY backend/ /var/www/html/backend/
 COPY frontend/views/ /var/www/html/frontend/views/
 
 # Copy compiled frontend assets from frontend-builder stage into backend/public/build
-COPY --from=frontend-builder /backend/public/build /var/www/html/backend/public/build
+COPY --from=frontend-builder /app/backend/public/build /var/www/html/backend/public/build
 
 # Install production PHP dependencies
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -78,7 +82,7 @@ COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY docker/php.ini /usr/local/etc/php/conf.d/99-hoyos.ini
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh /var/www/html/backend/../docker/entrypoint.sh 2>/dev/null || true
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Ensure storage directories exist with appropriate permissions
 RUN mkdir -p \
