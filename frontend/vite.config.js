@@ -17,6 +17,11 @@ export default defineConfig({
             ],
         }),
     ],
+    build: {
+        outDir: path.resolve(__dirname, '../backend/public/build'),
+        emptyOutDir: true,
+        manifest: 'manifest.json',
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './js'),

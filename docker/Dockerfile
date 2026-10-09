@@ -19,6 +19,10 @@ RUN mkdir -p /app/backend/public
 # Build production assets into /app/backend/public/build
 RUN npm run build
 
+# Diagnostic inspection of output manifest and build assets
+RUN find /app -name "manifest.json" -not -path "*/node_modules/*" ; \
+    ls -la /app/backend/public /app/backend/public/build 2>&1 || true
+
 # Validate that the build generated manifest.json early
 RUN test -f /app/backend/public/build/manifest.json
 
